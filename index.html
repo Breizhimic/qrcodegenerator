@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QRFORGE — Générateur de QR Codes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- QR Code library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- jsPDF for PDF export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ░░ HEADER ░░ -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-icon">▦</span>
+      <span class="logo-text">QRFORGE</span>
+      <span class="logo-tag">v2.0</span>
+    </div>
+    <nav class="header-nav">
+      <button class="nav-tab active" data-tab="generator">Générateur</button>
+      <button class="nav-tab" data-tab="batch">Batch</button>
+      <button class="nav-tab" data-tab="history">Historique</button>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" title="Changer de thème">
+      <span class="theme-icon">◐</span>
+    </button>
+  </div>
+</header>
+
+<!-- ░░ TICKER ░░ -->
+<div class="ticker-bar">
+  <div class="ticker-content">
+    <span>▸ QR Codes instantanés</span>
+    <span>▸ PNG · SVG · PDF gratuits</span>
+    <span>▸ Logo personnalisé</span>
+    <span>▸ Mode batch x10</span>
+    <span>▸ Historique local</span>
+    <span>▸ QR Codes instantanés</span>
+    <span>▸ PNG · SVG · PDF gratuits</span>
+    <span>▸ Logo personnalisé</span>
+    <span>▸ Mode batch x10</span>
+    <span>▸ Historique local</span>
+  </div>
+</div>
+
+<!-- ░░ MAIN ░░ -->
+<main>
+
+  <!-- ====== TAB: GENERATOR ====== -->
+  <section class="tab-content active" id="tab-generator">
+    <div class="generator-grid">
+
+      <!-- LEFT: Controls -->
+      <div class="controls-panel">
+
+        <div class="panel-section">
+          <label class="field-label">
+            <span class="label-num">01</span>
+            CONTENU DU QR CODE
+          </label>
+          <textarea id="qrInput" class="qr-input" placeholder="https://exemple.com&#10;ou texte libre, email, téléphone..." rows="4"></textarea>
+          <div class="quick-presets">
+            <span class="preset-label">PRESETS :</span>
+            <button class="preset-btn" data-preset="https://">URL</button>
+            <button class="preset-btn" data-preset-type="email">EMAIL</button>
+            <button class="preset-btn" data-preset="tel:+33">TEL</button>
+            <button class="preset-btn" data-preset="WIFI:T:WPA;S:MonReseau;P:MotDePasse;;">WIFI</button>
+            <button class="preset-btn" data-preset="-10% sur tout le magasin 🛍️">TEXTE</button>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <label class="field-label">
+            <span class="label-num">02</span>
+            PERSONNALISATION
+          </label>
+          <div class="custom-grid">
+            <div class="custom-field">
+              <span class="sub-label">Couleur QR</span>
+              <div class="color-wrap">
+                <input type="color" id="fgColor" value="#000000" class="color-input" />
+                <span class="color-val" id="fgColorVal">#000000</span>
+              </div>
+            </div>
+            <div class="custom-field">
+              <span class="sub-label">Fond</span>
+              <div class="color-wrap">
+                <input type="color" id="bgColor" value="#ffffff" class="color-input" />
+                <span class="color-val" id="bgColorVal">#ffffff</span>
+              </div>
+            </div>
+            <div class="custom-field">
+              <span class="sub-label">Taille (px)</span>
+              <input type="number" id="qrSize" value="300" min="100" max="800" step="50" class="num-input" />
+            </div>
+            <div class="custom-field">
+              <span class="sub-label">Correction</span>
+              <select id="ecLevel" class="select-input">
+                <option value="L">L — 7%</option>
+                <option value="M" selected>M — 15%</option>
+                <option value="Q">Q — 25%</option>
+                <option value="H">H — 30%</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <label class="field-label">
+            <span class="label-num">03</span>
+            LOGO AU CENTRE
+          </label>
+          <div class="logo-upload-area" id="logoDropZone">
+            <input type="file" id="logoFile" accept="image/*" hidden />
+            <div class="drop-content" id="dropContent">
+              <span class="drop-icon">⊕</span>
+              <span>Glissez une image ou <button class="inline-btn" id="logoPickBtn">parcourez</button></span>
+            </div>
+            <div class="logo-preview-wrap" id="logoPreviewWrap" style="display:none;">
+              <img id="logoPreviewImg" class="logo-thumb" alt="logo" />
+              <div class="logo-controls">
+                <label class="sub-label">Taille logo : <span id="logoSizeVal">25</span>%</label>
+                <input type="range" id="logoSize" min="10" max="40" value="25" class="range-input" />
+                <button class="remove-logo-btn" id="removeLogo">✕ Supprimer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <label class="field-label">
+            <span class="label-num">04</span>
+            FICHIER → QR CODE
+          </label>
+          <p class="section-hint">Uploadez un PDF ou une image (menu, carte de visite…). Le fichier sera converti en Data URL et encodé dans le QR code.</p>
+          <div class="file-qr-drop" id="fileQrDrop">
+            <input type="file" id="fileQrInput" accept="image/*,application/pdf" hidden />
+            <div class="file-qr-idle" id="fileQrIdle">
+              <span class="drop-icon">⊞</span>
+              <span>Glissez un PDF ou une image, ou <button class="inline-btn" id="fileQrPickBtn">parcourez</button></span>
+              <span class="file-qr-hint">JPG · PNG · PDF — max recommandé : 500 Ko</span>
+            </div>
+            <div class="file-qr-loaded" id="fileQrLoaded" style="display:none;">
+              <div class="file-qr-info">
+                <span class="file-qr-icon" id="fileQrIcon">📄</span>
+                <div class="file-qr-meta">
+                  <span class="file-qr-name" id="fileQrName">—</span>
+                  <span class="file-qr-size" id="fileQrSize">—</span>
+                </div>
+              </div>
+              <div class="file-qr-actions">
+                <button class="primary-btn small" id="fileQrEncode">▶ Encoder dans le QR</button>
+                <button class="remove-logo-btn" id="fileQrRemove">✕ Retirer</button>
+              </div>
+              <div class="file-qr-warning" id="fileQrWarning" style="display:none;">
+                ⚠ Fichier trop volumineux pour un QR code fiable (&gt;2 Ko encodé). Préférez un lien vers le fichier hébergé.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <label class="field-label">
+            <span class="label-num">05</span>
+            ÉTIQUETTE (optionnel)
+          </label>
+          <input type="text" id="qrLabel" placeholder="ex: Menu restaurant Été 2025" class="text-input" />
+        </div>
+
+      </div>
+
+      <!-- RIGHT: Preview & Export -->
+      <div class="preview-panel">
+        <div class="preview-header">
+          <span class="preview-title">APERÇU LIVE</span>
+          <div class="live-dot-wrap"><span class="live-dot"></span> LIVE</div>
+        </div>
+
+        <div class="qr-stage" id="qrStage">
+          <div class="qr-placeholder" id="qrPlaceholder">
+            <span class="placeholder-icon">▦</span>
+            <span>Entrez un contenu</span>
+          </div>
+          <div id="qrOutput"></div>
+          <canvas id="qrCanvas" style="display:none;"></canvas>
+        </div>
+
+        <div class="qr-meta" id="qrMeta" style="display:none;">
+          <span id="metaChars">0 car.</span>
+          <span id="metaSize">— px</span>
+          <span id="metaLevel">—</span>
+        </div>
+
+        <div class="export-bar">
+          <button class="export-btn" id="dlPNG" disabled>
+            <span class="btn-fmt">PNG</span>
+            <span class="btn-act">↓ Télécharger</span>
+          </button>
+          <button class="export-btn" id="dlSVG" disabled>
+            <span class="btn-fmt">SVG</span>
+            <span class="btn-act">↓ Télécharger</span>
+          </button>
+          <button class="export-btn" id="dlPDF" disabled>
+            <span class="btn-fmt">PDF</span>
+            <span class="btn-act">↓ Télécharger</span>
+          </button>
+        </div>
+
+        <button class="save-history-btn" id="saveHistory" disabled>
+          ⊕ Sauvegarder dans l'historique
+        </button>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== TAB: BATCH ====== -->
+  <section class="tab-content" id="tab-batch">
+    <div class="batch-container">
+      <div class="batch-header">
+        <h2 class="section-title">GÉNÉRATION BATCH</h2>
+        <p class="section-desc">Entrez jusqu'à 10 URLs ou textes, un par ligne. Tous seront générés simultanément.</p>
+      </div>
+
+      <div class="batch-controls">
+        <div class="batch-left">
+          <textarea id="batchInput" class="batch-textarea" placeholder="https://exemple.com&#10;https://google.com&#10;Texte libre #3&#10;mailto:contact@site.fr&#10;..." rows="12"></textarea>
+          <div class="batch-options">
+            <div class="custom-field">
+              <span class="sub-label">Couleur QR</span>
+              <input type="color" id="batchFg" value="#000000" class="color-input" />
+            </div>
+            <div class="custom-field">
+              <span class="sub-label">Fond</span>
+              <input type="color" id="batchBg" value="#ffffff" class="color-input" />
+            </div>
+            <div class="custom-field">
+              <span class="sub-label">Taille</span>
+              <input type="number" id="batchSize" value="200" min="100" max="400" step="50" class="num-input" />
+            </div>
+          </div>
+          <div class="batch-actions">
+            <button class="primary-btn" id="generateBatch">▶ GÉNÉRER TOUT</button>
+            <button class="secondary-btn" id="downloadAllPNG">↓ Tout en PNG</button>
+            <button class="secondary-btn" id="downloadBatchPDF">↓ PDF multi-pages</button>
+          </div>
+        </div>
+
+        <div class="batch-right">
+          <div class="batch-count"><span id="batchCountNum">0</span> / 10 QR codes</div>
+          <div class="batch-grid" id="batchGrid">
+            <div class="batch-empty">
+              <span>▦</span>
+              <span>Vos QR codes apparaîtront ici</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== TAB: HISTORY ====== -->
+  <section class="tab-content" id="tab-history">
+    <div class="history-container">
+      <div class="history-header">
+        <h2 class="section-title">HISTORIQUE LOCAL</h2>
+        <div class="history-actions">
+          <span class="history-count" id="historyCount">0 entrées</span>
+          <button class="danger-btn" id="clearHistory">✕ Tout effacer</button>
+        </div>
+      </div>
+      <div class="history-grid" id="historyGrid">
+        <div class="history-empty" id="historyEmpty">
+          <span class="empty-icon">▦</span>
+          <span>Aucun QR code sauvegardé</span>
+          <span class="empty-sub">Générez un QR code et cliquez sur "Sauvegarder"</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ░░ FOOTER ░░ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>▦ QRFORGE — 100% gratuit, 0% cloud</span>
+    <span>Vos données restent sur votre appareil</span>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
