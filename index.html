@@ -3,13 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QRFORGE — Générateur de QR Codes</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23111'/%3E%3C!-- top-left finder --%3E%3Crect x='2' y='2' width='9' height='9' rx='1.5' fill='%23f5e642'/%3E%3Crect x='3.5' y='3.5' width='6' height='6' rx='0.8' fill='%23111'/%3E%3Crect x='5' y='5' width='3' height='3' rx='0' fill='%23f5e642'/%3E%3C!-- top-right finder --%3E%3Crect x='21' y='2' width='9' height='9' rx='1.5' fill='%23f5e642'/%3E%3Crect x='22.5' y='3.5' width='6' height='6' rx='0.8' fill='%23111'/%3E%3Crect x='24' y='5' width='3' height='3' rx='0' fill='%23f5e642'/%3E%3C!-- bottom-left finder --%3E%3Crect x='2' y='21' width='9' height='9' rx='1.5' fill='%23f5e642'/%3E%3Crect x='3.5' y='22.5' width='6' height='6' rx='0.8' fill='%23111'/%3E%3Crect x='5' y='24' width='3' height='3' rx='0' fill='%23f5e642'/%3E%3C!-- heart data modules --%3E%3Cpath d='M22 22.5c0-1.2-1-2-2-2s-2 .8-2 2c0 2 2 3.5 2 3.5s2-1.5 2-3.5z' fill='%23f5e642'/%3E%3Cpath d='M27 22.5c0-1.2-1-2-2-2s-2 .8-2 2c0 2 2 3.5 2 3.5s2-1.5 2-3.5z' fill='%23f5e642'/%3E%3Crect x='14' y='21' width='2.5' height='2.5' fill='%23f5e642'/%3E%3Crect x='14' y='25' width='2.5' height='2.5' fill='%23f5e642'/%3E%3Crect x='14' y='14' width='2.5' height='2.5' fill='%23f5e642'/%3E%3Crect x='17' y='14' width='2.5' height='2.5' fill='%23f5e642'/%3E%3Crect x='20' y='14' width='2.5' height='2.5' fill='%23f5e642'/%3E%3Crect x='14' y='17' width='2.5' height='2.5' fill='%23f5e642'/%3E%3Crect x='23' y='14' width='2.5' height='2.5' fill='%23f5e642'/%3E%3C/svg%3E" />
+  <title>QR Code Generator — qrcodegenerator.fr</title>
+  <meta name="description" content="Générez des QR codes gratuitement : URL, WiFi, contact, email, SMS. Téléchargez en PNG, SVG ou PDF. 100% gratuit, sans inscription." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23111'/%3E%3Crect x='2' y='2' width='9' height='9' rx='1.5' fill='%23f5e642'/%3E%3Crect x='3.5' y='3.5' width='6' height='6' rx='0.8' fill='%23111'/%3E%3Crect x='5' y='5' width='3' height='3' rx='0' fill='%23f5e642'/%3E%3Crect x='21' y='2' width='9' height='9' rx='1.5' fill='%23f5e642'/%3E%3Crect x='22.5' y='3.5' width='6' height='6' rx='0.8' fill='%23111'/%3E%3Crect x='24' y='5' width='3' height='3' rx='0' fill='%23f5e642'/%3E%3Crect x='2' y='21' width='9' height='9' rx='1.5' fill='%23f5e642'/%3E%3Crect x='3.5' y='22.5' width='6' height='6' rx='0.8' fill='%23111'/%3E%3Crect x='5' y='24' width='3' height='3' rx='0' fill='%23f5e642'/%3E%3Crect x='14' y='21' width='2.5' height='2.5' fill='%23f5e642'/%3E%3Crect x='14' y='25' width='2.5' height='2.5' fill='%23f5e642'/%3E%3Crect x='14' y='14' width='2.5' height='2.5' fill='%23f5e642'/%3E%3Crect x='17' y='14' width='2.5' height='2.5' fill='%23f5e642'/%3E%3Crect x='20' y='14' width='2.5' height='2.5' fill='%23f5e642'/%3E%3Crect x='14' y='17' width='2.5' height='2.5' fill='%23f5e642'/%3E%3Crect x='23' y='14' width='2.5' height='2.5' fill='%23f5e642'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+    crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -17,8 +21,7 @@
   <div class="header-inner">
     <div class="logo">
       <span class="logo-icon">▦</span>
-      <span class="logo-text">QRFORGE</span>
-      <span class="logo-tag">v2.1</span>
+      <span class="logo-text">QRCODEGENERATOR.FR</span>
     </div>
     <nav class="header-nav">
       <button class="nav-tab active" data-tab="generator">Générateur</button>
@@ -364,6 +367,18 @@
         <button class="save-history-btn" id="saveHistory" disabled>
           ⊕ Sauvegarder dans l'historique
         </button>
+
+        <!-- Publicité — sous l'aperçu -->
+        <div class="ad-slot ad-slot-preview">
+          <div class="ad-label">Publicité</div>
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+               data-ad-slot="1111111111"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
       </div>
     </div>
   </section>
@@ -430,9 +445,21 @@
 
 </main>
 
+<!-- Publicité — bande horizontale avant le footer -->
+<div class="ad-slot ad-slot-footer">
+  <div class="ad-label">Publicité</div>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+       data-ad-slot="2222222222"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
 <footer class="site-footer">
   <div class="footer-inner">
-    <span>▦ QRFORGE — 100% gratuit, 0% cloud</span>
+    <span>▦ qrcodegenerator.fr — 100% gratuit, 0% cloud</span>
     <span>Vos données restent sur votre appareil</span>
   </div>
 </footer>

@@ -25,9 +25,9 @@ const html = document.documentElement;
 $('themeToggle').addEventListener('click', () => {
   const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   html.setAttribute('data-theme', next);
-  localStorage.setItem('qrforge-theme', next);
+  localStorage.setItem('qrcg-theme', next);
 });
-html.setAttribute('data-theme', localStorage.getItem('qrforge-theme') || 'light');
+html.setAttribute('data-theme', localStorage.getItem('qrcg-theme') || 'light');
 
 // ── Tab Navigation ─────────────────────────────────────────────
 $$('.nav-tab').forEach(btn => {
@@ -442,14 +442,14 @@ function setExportEnabled(enabled) {
 // ── Downloads ──────────────────────────────────────────────────
 $('dlPNG').addEventListener('click', () => {
   if (!state.currentPNG) return;
-  downloadURL(state.currentPNG, `qrforge-${slugify(state.lastText)}.png`);
+  downloadURL(state.currentPNG, `qrcg-${slugify(state.lastText)}.png`);
   showToast('✓ PNG téléchargé');
 });
 
 $('dlSVG').addEventListener('click', () => {
   if (!state.currentSVGRaw) return;
   const blob = new Blob([state.currentSVGRaw], { type: 'image/svg+xml' });
-  downloadURL(URL.createObjectURL(blob), `qrforge-${slugify(state.lastText)}.svg`);
+  downloadURL(URL.createObjectURL(blob), `qrcg-${slugify(state.lastText)}.svg`);
   showToast('✓ SVG téléchargé');
 });
 
@@ -464,19 +464,19 @@ $('dlPDF').addEventListener('click', async () => {
     const x = (pageW - mmSize) / 2;
     const y = (pageH - mmSize) / 2 - 15;
     doc.setFont('helvetica', 'bold'); doc.setFontSize(16);
-    doc.text('QRFORGE', pageW / 2, 20, { align: 'center' });
+    doc.text('qrcodegenerator.fr', pageW / 2, 20, { align: 'center' });
     doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(120);
     doc.text(($('qrLabel').value || state.lastText).substring(0, 80), pageW / 2, 27, { align: 'center' });
     doc.addImage(state.currentPNG, 'PNG', x, y, mmSize, mmSize);
     doc.setFontSize(8); doc.setTextColor(160);
-    doc.text('Généré par QRFORGE', pageW / 2, pageH - 12, { align: 'center' });
-    doc.save(`qrforge-${slugify(state.lastText)}.pdf`);
+    doc.text('qrcodegenerator.fr', pageW / 2, pageH - 12, { align: 'center' });
+    doc.save(`qrcg-${slugify(state.lastText)}.pdf`);
     showToast('✓ PDF téléchargé');
   } catch(e) { showToast('⚠ Erreur PDF'); }
 });
 
 // ── History ────────────────────────────────────────────────────
-const HISTORY_KEY = 'qrforge-history';
+const HISTORY_KEY = 'qrcg-history';
 function getHistory() { try { return JSON.parse(localStorage.getItem(HISTORY_KEY)) || []; } catch { return []; } }
 
 $('saveHistory').addEventListener('click', () => {
@@ -524,7 +524,7 @@ function renderHistory() {
     const id = parseInt(btn.dataset.id);
     const entry = getHistory().find(h => h.id === id);
     if (!entry) return;
-    if (btn.dataset.action === 'download') { downloadURL(entry.png, `qrforge-${slugify(entry.content)}.png`); showToast('✓ PNG téléchargé'); }
+    if (btn.dataset.action === 'download') { downloadURL(entry.png, `qrcg-${slugify(entry.content)}.png`); showToast('✓ PNG téléchargé'); }
     else if (btn.dataset.action === 'load') {
       $$('.nav-tab')[0].click(); $$('.type-btn')[0].click();
       $('urlInput').value = entry.content; $('qrLabel').value = entry.label;
@@ -547,13 +547,13 @@ async function exportHistoryPDF(entry) {
     const pageW = doc.internal.pageSize.getWidth();
     const pageH = doc.internal.pageSize.getHeight();
     doc.setFont('helvetica', 'bold'); doc.setFontSize(16);
-    doc.text('QRFORGE', pageW / 2, 20, { align: 'center' });
+    doc.text('qrcodegenerator.fr', pageW / 2, 20, { align: 'center' });
     doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(120);
     doc.text(entry.label.substring(0, 80), pageW / 2, 27, { align: 'center' });
     doc.addImage(entry.png, 'PNG', (pageW - 100) / 2, 40, 100, 100);
     doc.setFontSize(8); doc.setTextColor(160);
-    doc.text('Généré par QRFORGE', pageW / 2, pageH - 12, { align: 'center' });
-    doc.save(`qrforge-${slugify(entry.content)}.pdf`);
+    doc.text('qrcodegenerator.fr', pageW / 2, pageH - 12, { align: 'center' });
+    doc.save(`qrcg-${slugify(entry.content)}.pdf`);
     showToast('✓ PDF téléchargé');
   } catch(e) { showToast('⚠ Erreur PDF'); }
 }
@@ -593,7 +593,7 @@ async function generateBatch() {
     if (!btn) return;
     const idx = parseInt(btn.dataset.idx);
     const item = state.batchItems[idx];
-    if (item) { downloadURL(item.png, `qrforge-batch-${idx+1}.png`); showToast(`✓ QR #${idx+1} téléchargé`); }
+    if (item) { downloadURL(item.png, `qrcg-batch-${idx+1}.png`); showToast(`✓ QR #${idx+1} téléchargé`); }
   });
   showToast(`✓ ${lines.length} QR codes générés`);
 }
@@ -619,7 +619,7 @@ function generateBatchQR(text, size, fg, bg) {
 
 $('downloadAllPNG').addEventListener('click', async () => {
   if (!state.batchItems.length) { showToast('⚠ Générez d\'abord'); return; }
-  for (let i = 0; i < state.batchItems.length; i++) { await sleep(100); downloadURL(state.batchItems[i].png, `qrforge-batch-${i+1}.png`); }
+  for (let i = 0; i < state.batchItems.length; i++) { await sleep(100); downloadURL(state.batchItems[i].png, `qrcg-batch-${i+1}.png`); }
   showToast(`✓ ${state.batchItems.length} PNG téléchargés`);
 });
 
@@ -636,12 +636,12 @@ $('downloadBatchPDF').addEventListener('click', async () => {
       if (i > 0 && i % perPage === 0) doc.addPage();
       const col = i % cols, row = Math.floor((i % perPage) / cols);
       const x = margin + col * cellW + (cellW - qrW) / 2, y = margin + 10 + row * cellH + 5;
-      if (i % perPage === 0) { doc.setFont('helvetica','bold'); doc.setFontSize(12); doc.setTextColor(30); doc.text('QRFORGE — Batch', pageW/2, 10, {align:'center'}); }
+      if (i % perPage === 0) { doc.setFont('helvetica','bold'); doc.setFontSize(12); doc.setTextColor(30); doc.text('qrcodegenerator.fr — Batch', pageW/2, 10, {align:'center'}); }
       doc.addImage(item.png, 'PNG', x, y, qrW, qrW);
       doc.setFont('helvetica','normal'); doc.setFontSize(7); doc.setTextColor(100);
       doc.text(item.text.substring(0, 40), x + qrW/2, y + qrW + 4, {align:'center'});
     });
-    doc.save('qrforge-batch.pdf'); showToast('✓ PDF batch téléchargé');
+    doc.save('qrcg-batch.pdf'); showToast('✓ PDF batch téléchargé');
   } catch(e) { showToast('⚠ Erreur PDF'); }
 });
 
