@@ -25,5 +25,3 @@ cd qrcode-generator
 
 ## License
 MIT
-
-https://breizhimic.github.io/qrcodegenerator/
