@@ -1,1 +1,1 @@
-https://breizhimic.github.io/qrcodegenerator/
+https://breizhimic.github.io/qrforge/
