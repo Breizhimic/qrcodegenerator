@@ -24,29 +24,37 @@
       <span class="logo-text">QRCODEGENERATOR.FR</span>
     </div>
     <nav class="header-nav">
-      <button class="nav-tab active" data-tab="generator">Générateur</button>
-      <button class="nav-tab" data-tab="batch">Batch</button>
-      <button class="nav-tab" data-tab="history">Historique</button>
-      <button class="nav-tab" data-tab="about">À propos</button>
+      <button class="nav-tab active" data-tab="generator" data-i18n="nav_generator">Générateur</button>
+      <button class="nav-tab" data-tab="batch" data-i18n="nav_batch">Batch</button>
+      <button class="nav-tab" data-tab="history" data-i18n="nav_history">Historique</button>
+      <button class="nav-tab" data-tab="about" data-i18n="nav_about">À propos</button>
+      <button class="nav-tab" data-tab="guide" data-i18n="nav_guide">Guide QR</button>
     </nav>
-    <button class="theme-toggle" id="themeToggle" title="Changer de thème">
-      <span class="theme-icon">◐</span>
-    </button>
+    <div class="header-controls">
+      <button class="lang-toggle" id="langToggle" title="Switch language" aria-label="Changer de langue">
+        <span id="langLabel">🇬🇧 EN</span>
+      </button>
+      <button class="theme-toggle" id="themeToggle" title="Changer de thème">
+        <span class="theme-icon">◐</span>
+      </button>
+    </div>
   </div>
 </header>
 
 <div class="ticker-bar">
   <div class="ticker-content">
-    <span>▸ QR Codes instantanés</span>
-    <span>▸ PNG · SVG · PDF gratuits</span>
-    <span>▸ Logo personnalisé</span>
-    <span>▸ Mode batch x10</span>
-    <span>▸ WiFi · Email · SMS · vCard</span>
-    <span>▸ QR Codes instantanés</span>
-    <span>▸ PNG · SVG · PDF gratuits</span>
-    <span>▸ Logo personnalisé</span>
-    <span>▸ Mode batch x10</span>
-    <span>▸ WiFi · Email · SMS · vCard</span>
+    <span data-i18n="ticker_instant">▸ QR Codes instantanés</span>
+    <span data-i18n="ticker_formats">▸ PNG · SVG · PDF gratuits</span>
+    <span data-i18n="ticker_logo">▸ Logo personnalisé</span>
+    <span data-i18n="ticker_batch">▸ Mode batch x10</span>
+    <span data-i18n="ticker_types">▸ WiFi · Email · SMS · vCard</span>
+    <span data-i18n="ticker_permanent">▸ QR Codes permanents — sans abonnement</span>
+    <span data-i18n="ticker_instant">▸ QR Codes instantanés</span>
+    <span data-i18n="ticker_formats">▸ PNG · SVG · PDF gratuits</span>
+    <span data-i18n="ticker_logo">▸ Logo personnalisé</span>
+    <span data-i18n="ticker_batch">▸ Mode batch x10</span>
+    <span data-i18n="ticker_types">▸ WiFi · Email · SMS · vCard</span>
+    <span data-i18n="ticker_permanent">▸ QR Codes permanents — sans abonnement</span>
   </div>
 </div>
 
@@ -58,59 +66,59 @@
 
         <!-- 01 TYPE -->
         <div class="panel-section">
-          <label class="field-label"><span class="label-num">01</span> TYPE DE CONTENU</label>
+          <label class="field-label"><span class="label-num">01</span> <span data-i18n="label_content_type">TYPE DE CONTENU</span></label>
           <div class="type-grid">
             <button class="type-btn active" data-type="url"><span class="type-icon">🔗</span><span>URL</span></button>
-            <button class="type-btn" data-type="text"><span class="type-icon">✏️</span><span>Texte</span></button>
+            <button class="type-btn" data-type="text"><span class="type-icon">✏️</span><span data-i18n="type_text">Texte</span></button>
             <button class="type-btn" data-type="email"><span class="type-icon">✉️</span><span>Email</span></button>
-            <button class="type-btn" data-type="phone"><span class="type-icon">📞</span><span>Téléphone</span></button>
+            <button class="type-btn" data-type="phone"><span class="type-icon">📞</span><span data-i18n="type_phone">Téléphone</span></button>
             <button class="type-btn" data-type="wifi"><span class="type-icon">📶</span><span>WiFi</span></button>
             <button class="type-btn" data-type="sms"><span class="type-icon">💬</span><span>SMS</span></button>
-            <button class="type-btn" data-type="vcard"><span class="type-icon">👤</span><span>Contact</span></button>
-            <button class="type-btn" data-type="file"><span class="type-icon">📄</span><span>Fichier</span></button>
+            <button class="type-btn" data-type="vcard"><span class="type-icon">👤</span><span data-i18n="type_vcard">Contact</span></button>
+            <button class="type-btn" data-type="file"><span class="type-icon">📄</span><span data-i18n="type_file">Fichier</span></button>
           </div>
         </div>
 
         <!-- 02 CONTENT FORMS -->
         <div class="panel-section" id="contentSection">
-          <label class="field-label"><span class="label-num">02</span><span id="contentLabel">CONTENU</span></label>
+          <label class="field-label"><span class="label-num">02</span><span id="contentLabel" data-i18n="label_content">CONTENU</span></label>
 
           <!-- URL -->
           <div class="content-form active" id="form-url">
             <div class="form-row">
-              <label class="sub-label" for="urlInput">Adresse web</label>
-              <input type="url" class="text-input" id="urlInput" placeholder="https://exemple.com" aria-label="URL du site web" />
+              <label class="sub-label" for="urlInput" data-i18n="url_label">Adresse web</label>
+              <input type="url" class="text-input" id="urlInput" data-i18n-ph="ph_url" placeholder="https://exemple.com" aria-label="URL du site web" />
             </div>
           </div>
 
           <!-- TEXT -->
           <div class="content-form" id="form-text">
             <div class="form-row">
-              <label class="sub-label" for="textInput">Texte libre</label>
-              <textarea class="qr-input" id="textInput" rows="4" placeholder="-10% sur tout le magasin ! 🛍️" aria-label="Texte à encoder dans le QR code"></textarea>
+              <label class="sub-label" for="textInput" data-i18n="text_label">Texte libre</label>
+              <textarea class="qr-input" id="textInput" rows="4" data-i18n-ph="ph_text" placeholder="-10% sur tout le magasin ! 🛍️" aria-label="Texte à encoder dans le QR code"></textarea>
             </div>
           </div>
 
           <!-- EMAIL -->
           <div class="content-form" id="form-email">
             <div class="form-row">
-              <label class="sub-label" for="emailAddress">Adresse email</label>
-              <input type="email" class="text-input" id="emailAddress" placeholder="contact@exemple.com" aria-label="Adresse email du destinataire" />
+              <label class="sub-label" for="emailAddress" data-i18n="email_addr_label">Adresse email</label>
+              <input type="email" class="text-input" id="emailAddress" data-i18n-ph="ph_email_addr" placeholder="contact@exemple.com" aria-label="Adresse email du destinataire" />
             </div>
             <div class="form-row">
-              <label class="sub-label" for="emailSubject">Sujet (optionnel)</label>
-              <input type="text" class="text-input" id="emailSubject" placeholder="Demande d'information" aria-label="Sujet de l'email" />
+              <label class="sub-label" for="emailSubject" data-i18n="email_subject_label">Sujet (optionnel)</label>
+              <input type="text" class="text-input" id="emailSubject" data-i18n-ph="ph_email_subject" placeholder="Demande d'information" aria-label="Sujet de l'email" />
             </div>
             <div class="form-row">
-              <label class="sub-label" for="emailBody">Corps du message (optionnel)</label>
-              <textarea class="qr-input" id="emailBody" rows="3" placeholder="Bonjour, je souhaite..." aria-label="Corps du message email"></textarea>
+              <label class="sub-label" for="emailBody" data-i18n="email_body_label">Corps du message (optionnel)</label>
+              <textarea class="qr-input" id="emailBody" rows="3" data-i18n-ph="ph_email_body" placeholder="Bonjour, je souhaite..." aria-label="Corps du message email"></textarea>
             </div>
           </div>
 
           <!-- PHONE -->
           <div class="content-form" id="form-phone">
             <div class="form-row">
-              <label class="sub-label" for="phoneNumber">Numéro de téléphone</label>
+              <label class="sub-label" for="phoneNumber" data-i18n="phone_label">Numéro de téléphone</label>
               <div class="phone-row">
                 <label for="phoneCountry" class="sr-only">Indicatif pays</label>
                 <select class="select-input country-select" id="phoneCountry" aria-label="Indicatif pays pour le téléphone">
@@ -158,29 +166,29 @@
           <!-- WIFI -->
           <div class="content-form" id="form-wifi">
             <div class="form-row">
-              <label class="sub-label" for="wifiSSID">Nom du réseau (SSID)</label>
-              <input type="text" class="text-input" id="wifiSSID" placeholder="MonReseau_5G" aria-label="Nom du réseau WiFi (SSID)" />
+              <label class="sub-label" for="wifiSSID" data-i18n="wifi_ssid_label">Nom du réseau (SSID)</label>
+              <input type="text" class="text-input" id="wifiSSID" data-i18n-ph="ph_wifi_ssid" placeholder="MonReseau_5G" aria-label="Nom du réseau WiFi (SSID)" />
             </div>
             <div class="form-row">
-              <label class="sub-label" for="wifiPassword">Mot de passe</label>
+              <label class="sub-label" for="wifiPassword" data-i18n="wifi_pw_label">Mot de passe</label>
               <div class="password-row">
-                <input type="password" class="text-input" id="wifiPassword" placeholder="MotDePasse123" aria-label="Mot de passe du réseau WiFi" />
+                <input type="password" class="text-input" id="wifiPassword" data-i18n-ph="ph_wifi_pw" placeholder="MotDePasse123" aria-label="Mot de passe du réseau WiFi" />
                 <button class="toggle-pw-btn" id="toggleWifiPw" aria-label="Afficher ou masquer le mot de passe" title="Afficher/masquer">👁</button>
               </div>
             </div>
             <div class="form-row">
               <div class="radio-group-wrap" role="group" aria-labelledby="wifiEncLabel">
-                <span class="sub-label" id="wifiEncLabel">Chiffrement</span>
+                <span class="sub-label" id="wifiEncLabel" data-i18n="wifi_enc_label">Chiffrement</span>
                 <div class="radio-group">
                   <label class="radio-label"><input type="radio" name="wifiEnc" value="WPA" checked /> WPA / WPA2</label>
                   <label class="radio-label"><input type="radio" name="wifiEnc" value="WEP" /> WEP</label>
-                  <label class="radio-label"><input type="radio" name="wifiEnc" value="nopass" /> Aucun (ouvert)</label>
+                  <label class="radio-label"><input type="radio" name="wifiEnc" value="nopass" /> <span data-i18n="wifi_open">Aucun (ouvert)</span></label>
                 </div>
               </div>
             </div>
             <div class="form-row">
               <label class="checkbox-label" for="wifiHidden">
-                <input type="checkbox" id="wifiHidden" /> Réseau masqué (hidden SSID)
+                <input type="checkbox" id="wifiHidden" /> <span data-i18n="wifi_hidden">Réseau masqué (hidden SSID)</span>
               </label>
             </div>
           </div>
@@ -188,7 +196,7 @@
           <!-- SMS -->
           <div class="content-form" id="form-sms">
             <div class="form-row">
-              <label class="sub-label" for="smsNumber">Numéro de téléphone</label>
+              <label class="sub-label" for="smsNumber" data-i18n="phone_label">Numéro de téléphone</label>
               <div class="phone-row">
                 <label for="smsCountry" class="sr-only">Indicatif pays SMS</label>
                 <select class="select-input country-select" id="smsCountry" aria-label="Indicatif pays pour le SMS">
@@ -209,8 +217,8 @@
               </div>
             </div>
             <div class="form-row">
-              <label class="sub-label" for="smsMessage">Message (optionnel)</label>
-              <textarea class="qr-input" id="smsMessage" rows="3" placeholder="Votre message..." aria-label="Corps du message SMS"></textarea>
+              <label class="sub-label" for="smsMessage" data-i18n="sms_msg_label">Message (optionnel)</label>
+              <textarea class="qr-input" id="smsMessage" rows="3" data-i18n-ph="ph_sms_msg" placeholder="Votre message..." aria-label="Corps du message SMS"></textarea>
             </div>
           </div>
 
@@ -218,52 +226,52 @@
           <div class="content-form" id="form-vcard">
             <div class="form-grid-2">
               <div class="form-row">
-                <label class="sub-label" for="vcardFirst">Prénom</label>
-                <input type="text" class="text-input" id="vcardFirst" placeholder="Jean" aria-label="Prénom du contact" />
+                <label class="sub-label" for="vcardFirst" data-i18n="vcard_first">Prénom</label>
+                <input type="text" class="text-input" id="vcardFirst" data-i18n-ph="ph_vcard_first" placeholder="Jean" aria-label="Prénom du contact" />
               </div>
               <div class="form-row">
-                <label class="sub-label" for="vcardLast">Nom</label>
-                <input type="text" class="text-input" id="vcardLast" placeholder="Dupont" aria-label="Nom de famille du contact" />
+                <label class="sub-label" for="vcardLast" data-i18n="vcard_last">Nom</label>
+                <input type="text" class="text-input" id="vcardLast" data-i18n-ph="ph_vcard_last" placeholder="Dupont" aria-label="Nom de famille du contact" />
               </div>
             </div>
             <div class="form-row">
-              <label class="sub-label" for="vcardOrg">Organisation</label>
-              <input type="text" class="text-input" id="vcardOrg" placeholder="Mon Entreprise" aria-label="Organisation ou entreprise" />
+              <label class="sub-label" for="vcardOrg" data-i18n="vcard_org">Organisation</label>
+              <input type="text" class="text-input" id="vcardOrg" data-i18n-ph="ph_vcard_org" placeholder="Mon Entreprise" aria-label="Organisation ou entreprise" />
             </div>
             <div class="form-row">
-              <label class="sub-label" for="vcardTitle">Titre / Poste</label>
-              <input type="text" class="text-input" id="vcardTitle" placeholder="Directeur Commercial" aria-label="Titre ou poste occupé" />
+              <label class="sub-label" for="vcardTitle" data-i18n="vcard_title">Titre / Poste</label>
+              <input type="text" class="text-input" id="vcardTitle" data-i18n-ph="ph_vcard_title" placeholder="Directeur Commercial" aria-label="Titre ou poste occupé" />
             </div>
             <div class="form-row">
-              <label class="sub-label" for="vcardPhone">Téléphone</label>
-              <input type="tel" class="text-input" id="vcardPhone" placeholder="+33 6 12 34 56 78" aria-label="Numéro de téléphone du contact" />
+              <label class="sub-label" for="vcardPhone" data-i18n="vcard_phone">Téléphone</label>
+              <input type="tel" class="text-input" id="vcardPhone" data-i18n-ph="ph_vcard_phone" placeholder="+33 6 12 34 56 78" aria-label="Numéro de téléphone du contact" />
             </div>
             <div class="form-row">
               <label class="sub-label" for="vcardEmail">Email</label>
-              <input type="email" class="text-input" id="vcardEmail" placeholder="jean.dupont@exemple.com" aria-label="Adresse email du contact" />
+              <input type="email" class="text-input" id="vcardEmail" data-i18n-ph="ph_vcard_email" placeholder="jean.dupont@exemple.com" aria-label="Adresse email du contact" />
             </div>
             <div class="form-row">
-              <label class="sub-label" for="vcardUrl">Site web</label>
-              <input type="url" class="text-input" id="vcardUrl" placeholder="https://exemple.com" aria-label="Site web du contact" />
+              <label class="sub-label" for="vcardUrl" data-i18n="vcard_website">Site web</label>
+              <input type="url" class="text-input" id="vcardUrl" data-i18n-ph="ph_vcard_url" placeholder="https://exemple.com" aria-label="Site web du contact" />
             </div>
             <div class="form-row">
-              <label class="sub-label" for="vcardAddress">Adresse</label>
-              <input type="text" class="text-input" id="vcardAddress" placeholder="1 rue de la Paix, 75001 Paris" aria-label="Adresse postale du contact" />
+              <label class="sub-label" for="vcardAddress" data-i18n="vcard_address">Adresse</label>
+              <input type="text" class="text-input" id="vcardAddress" data-i18n-ph="ph_vcard_addr" placeholder="1 rue de la Paix, 75001 Paris" aria-label="Adresse postale du contact" />
             </div>
           </div>
 
           <!-- FILE -->
           <div class="content-form" id="form-file">
             <div class="form-row">
-              <label class="sub-label" for="fileUrlInput">Lien vers le fichier hébergé</label>
-              <input type="url" class="text-input" id="fileUrlInput" placeholder="https://drive.google.com/… ou https://dropbox.com/…" aria-label="Lien de partage vers le fichier hébergé" />
+              <label class="sub-label" for="fileUrlInput" data-i18n="file_label">Lien vers le fichier hébergé</label>
+              <input type="url" class="text-input" id="fileUrlInput" data-i18n-ph="ph_file_url" placeholder="https://drive.google.com/… ou https://dropbox.com/…" aria-label="Lien de partage vers le fichier hébergé" />
             </div>
             <div class="file-url-hint">
-              <span>Hébergez votre fichier sur</span>
+              <span data-i18n="file_hint">Hébergez votre fichier sur</span>
               <a href="https://drive.google.com" target="_blank">Google Drive</a>
               <a href="https://www.dropbox.com" target="_blank">Dropbox</a>
               <a href="https://file.io" target="_blank">file.io</a>
-              <span>puis collez le lien de partage ci-dessus.</span>
+              <span data-i18n="file_hint2">puis collez le lien de partage ci-dessus.</span>
             </div>
           </div>
 
@@ -271,28 +279,28 @@
 
         <!-- 03 PERSONNALISATION -->
         <div class="panel-section">
-          <label class="field-label"><span class="label-num">03</span> PERSONNALISATION</label>
+          <label class="field-label"><span class="label-num">03</span> <span data-i18n="label_custom">PERSONNALISATION</span></label>
           <div class="custom-grid">
             <div class="custom-field">
-              <label class="sub-label" for="fgColor">Couleur QR</label>
+              <label class="sub-label" for="fgColor" data-i18n="color_qr">Couleur QR</label>
               <div class="color-wrap">
                 <input type="color" id="fgColor" value="#000000" class="color-input" aria-label="Couleur des modules du QR code" />
                 <span class="color-val" id="fgColorVal" aria-live="polite">#000000</span>
               </div>
             </div>
             <div class="custom-field">
-              <label class="sub-label" for="bgColor">Fond</label>
+              <label class="sub-label" for="bgColor" data-i18n="color_bg">Fond</label>
               <div class="color-wrap">
                 <input type="color" id="bgColor" value="#ffffff" class="color-input" aria-label="Couleur de fond du QR code" />
                 <span class="color-val" id="bgColorVal" aria-live="polite">#ffffff</span>
               </div>
             </div>
             <div class="custom-field">
-              <label class="sub-label" for="qrSize">Taille (px)</label>
+              <label class="sub-label" for="qrSize" data-i18n="size_label">Taille (px)</label>
               <input type="number" id="qrSize" value="300" min="100" max="800" step="50" class="num-input" aria-label="Taille du QR code en pixels" />
             </div>
             <div class="custom-field">
-              <label class="sub-label" for="ecLevel">Correction</label>
+              <label class="sub-label" for="ecLevel" data-i18n="ec_label">Correction</label>
               <select id="ecLevel" class="select-input" aria-label="Niveau de correction d'erreur du QR code">
                 <option value="L">L — 7%</option>
                 <option value="M" selected>M — 15%</option>
@@ -301,31 +309,28 @@
               </select>
             </div>
           </div>
-
         </div>
 
         <!-- 04 LOGO -->
         <div class="panel-section">
-          <label class="field-label"><span class="label-num">04</span> LOGO AU CENTRE</label>
-
-          <!-- Preset logos — images populated by JS on page load -->
-          <div class="subsection-label">LOGOS PRÉINTÉGRÉS</div>
-          <div class="preset-logos-grid" id="presetLogosGrid">
-            <!-- buttons injected by JS -->
-          </div>
-
+          <label class="field-label"><span class="label-num">04</span> <span data-i18n="label_logo">LOGO AU CENTRE</span></label>
+          <div class="subsection-label" data-i18n="preset_logos">LOGOS PRÉINTÉGRÉS</div>
+          <div class="preset-logos-grid" id="presetLogosGrid"></div>
           <div class="logo-upload-area" id="logoDropZone" style="margin-top:12px;">
             <input type="file" id="logoFile" accept="image/*" hidden />
             <div class="drop-content" id="dropContent">
               <span class="drop-icon">⊕</span>
-              <span>Glissez une image ou <button class="inline-btn" id="logoPickBtn">parcourez</button></span>
+              <span class="drop-label-wrap">
+                <span data-i18n="drop_text">Glissez une image ou</span>
+                <button class="inline-btn" id="logoPickBtn" data-i18n="drop_browse">parcourez</button>
+              </span>
             </div>
             <div class="logo-preview-wrap" id="logoPreviewWrap" style="display:none;">
-              <img id="logoPreviewImg" class="logo-thumb" alt="Aperçu du logo sélectionné pour le centre du QR code" />
+              <img id="logoPreviewImg" class="logo-thumb" alt="Aperçu du logo" />
               <div class="logo-controls">
-                <label class="sub-label" for="logoSize">Taille logo : <span id="logoSizeVal">20</span>% <span class="logo-size-note">(max 30%)</span></label>
-                <input type="range" id="logoSize" min="10" max="30" value="20" class="range-input" aria-label="Taille du logo en pourcentage de la taille du QR code" />
-                <button class="remove-logo-btn" id="removeLogo">✕ Supprimer</button>
+                <label class="sub-label" for="logoSize"><span data-i18n="logo_size">Taille logo</span> : <span id="logoSizeVal">20</span>% <span class="logo-size-note">(max 30%)</span></label>
+                <input type="range" id="logoSize" min="10" max="30" value="20" class="range-input" />
+                <button class="remove-logo-btn" id="removeLogo" data-i18n="logo_remove">✕ Supprimer</button>
               </div>
             </div>
           </div>
@@ -333,8 +338,8 @@
 
         <!-- 05 ÉTIQUETTE -->
         <div class="panel-section">
-          <label class="field-label" for="qrLabel"><span class="label-num">05</span> ÉTIQUETTE POUR HISTORIQUE (optionnel)</label>
-          <input type="text" id="qrLabel" placeholder="ex: Menu restaurant Été 2025" class="text-input" aria-label="Étiquette pour identifier ce QR code dans l'historique" />
+          <label class="field-label" for="qrLabel"><span class="label-num">05</span> <span data-i18n="label_tag">ÉTIQUETTE POUR HISTORIQUE (optionnel)</span></label>
+          <input type="text" id="qrLabel" placeholder="ex: Menu restaurant Été 2025" class="text-input" aria-label="Étiquette pour identifier ce QR code dans l'historique" data-i18n-placeholder="tag_placeholder" />
         </div>
 
       </div>
@@ -342,13 +347,13 @@
       <!-- RIGHT: Preview -->
       <div class="preview-panel">
         <div class="preview-header">
-          <span class="preview-title">APERÇU LIVE</span>
+          <span class="preview-title" data-i18n="preview_title">APERÇU LIVE</span>
           <div class="live-dot-wrap"><span class="live-dot"></span> LIVE</div>
         </div>
         <div class="qr-stage" id="qrStage">
           <div class="qr-placeholder" id="qrPlaceholder">
             <span class="placeholder-icon">▦</span>
-            <span>Remplissez le formulaire</span>
+            <span data-i18n="placeholder_text">Remplissez le formulaire</span>
           </div>
           <div id="qrOutput"></div>
           <canvas id="qrCanvas" style="display:none;"></canvas>
@@ -360,22 +365,20 @@
         </div>
         <div class="export-bar">
           <button class="export-btn" id="dlPNG" disabled>
-            <span class="btn-fmt">PNG</span><span class="btn-act">↓ Télécharger</span>
+            <span class="btn-fmt">PNG</span><span class="btn-act" data-i18n="dl_btn">↓ Télécharger</span>
           </button>
           <button class="export-btn" id="dlSVG" disabled>
-            <span class="btn-fmt">SVG</span><span class="btn-act">↓ Télécharger</span>
+            <span class="btn-fmt">SVG</span><span class="btn-act" data-i18n="dl_btn">↓ Télécharger</span>
           </button>
           <button class="export-btn" id="dlPDF" disabled>
-            <span class="btn-fmt">PDF</span><span class="btn-act">↓ Télécharger</span>
+            <span class="btn-fmt">PDF</span><span class="btn-act" data-i18n="dl_btn">↓ Télécharger</span>
           </button>
         </div>
-        <button class="save-history-btn" id="saveHistory" disabled>
-          ⊕ Sauvegarder dans l'historique
-        </button>
+        <button class="save-history-btn" id="saveHistory" disabled data-i18n="save_btn">⊕ Sauvegarder dans l'historique</button>
 
         <!-- Publicité — sous l'aperçu -->
         <div class="ad-slot ad-slot-preview">
-          <div class="ad-label">Publicité</div>
+          <div class="ad-label" data-i18n="ad_label">Publicité</div>
           <ins class="adsbygoogle"
                style="display:block"
                data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
@@ -392,37 +395,37 @@
   <section class="tab-content" id="tab-batch">
     <div class="batch-container">
       <div class="batch-header">
-        <h2 class="section-title">GÉNÉRATION BATCH</h2>
-        <p class="section-desc">Entrez jusqu'à 10 URLs ou textes, un par ligne.</p>
+        <h2 class="section-title" data-i18n="batch_title">GÉNÉRATION BATCH</h2>
+        <p class="section-desc" data-i18n="batch_desc">Entrez jusqu'à 10 URLs ou textes, un par ligne.</p>
       </div>
       <div class="batch-controls">
         <div class="batch-left">
-          <label for="batchInput" class="sr-only">Liste d'URLs ou textes à encoder, un par ligne</label>
+          <label for="batchInput" class="sr-only">Liste d'URLs</label>
           <textarea id="batchInput" class="batch-textarea" placeholder="https://exemple.com&#10;https://google.com&#10;Texte #3..." rows="12" aria-label="Liste d'URLs ou textes à encoder en batch, un par ligne"></textarea>
           <div class="batch-options">
             <div class="custom-field">
-              <label class="sub-label" for="batchFg">Couleur QR</label>
-              <input type="color" id="batchFg" value="#000000" class="color-input" aria-label="Couleur des QR codes batch" />
+              <label class="sub-label" for="batchFg" data-i18n="color_qr">Couleur QR</label>
+              <input type="color" id="batchFg" value="#000000" class="color-input" />
             </div>
             <div class="custom-field">
-              <label class="sub-label" for="batchBg">Fond</label>
-              <input type="color" id="batchBg" value="#ffffff" class="color-input" aria-label="Couleur de fond des QR codes batch" />
+              <label class="sub-label" for="batchBg" data-i18n="color_bg">Fond</label>
+              <input type="color" id="batchBg" value="#ffffff" class="color-input" />
             </div>
             <div class="custom-field">
-              <label class="sub-label" for="batchSize">Taille</label>
-              <input type="number" id="batchSize" value="200" min="100" max="400" step="50" class="num-input" aria-label="Taille des QR codes batch en pixels" />
+              <label class="sub-label" for="batchSize" data-i18n="size_label2">Taille</label>
+              <input type="number" id="batchSize" value="200" min="100" max="400" step="50" class="num-input" />
             </div>
           </div>
           <div class="batch-actions">
-            <button class="primary-btn" id="generateBatch">▶ GÉNÉRER TOUT</button>
-            <button class="secondary-btn" id="downloadAllPNG">↓ Tout en PNG</button>
-            <button class="secondary-btn" id="downloadBatchPDF">↓ PDF multi-pages</button>
+            <button class="primary-btn" id="generateBatch" data-i18n="batch_generate">▶ GÉNÉRER TOUT</button>
+            <button class="secondary-btn" id="downloadAllPNG" data-i18n="batch_dl_png">↓ Tout en PNG</button>
+            <button class="secondary-btn" id="downloadBatchPDF" data-i18n="batch_dl_pdf">↓ PDF multi-pages</button>
           </div>
         </div>
         <div class="batch-right">
           <div class="batch-count"><span id="batchCountNum">0</span> / 10 QR codes</div>
           <div class="batch-grid" id="batchGrid">
-            <div class="batch-empty"><span>▦</span><span>Vos QR codes apparaîtront ici</span></div>
+            <div class="batch-empty"><span>▦</span><span data-i18n="batch_empty">Vos QR codes apparaîtront ici</span></div>
           </div>
         </div>
       </div>
@@ -433,17 +436,17 @@
   <section class="tab-content" id="tab-history">
     <div class="history-container">
       <div class="history-header">
-        <h2 class="section-title">HISTORIQUE LOCAL</h2>
+        <h2 class="section-title" data-i18n="history_title">HISTORIQUE LOCAL</h2>
         <div class="history-actions">
           <span class="history-count" id="historyCount">0 entrées</span>
-          <button class="danger-btn" id="clearHistory">✕ Tout effacer</button>
+          <button class="danger-btn" id="clearHistory" data-i18n="history_clear">✕ Tout effacer</button>
         </div>
       </div>
       <div class="history-grid" id="historyGrid">
         <div class="history-empty" id="historyEmpty">
           <span class="empty-icon">▦</span>
-          <span>Aucun QR code sauvegardé</span>
-          <span class="empty-sub">Générez un QR code et cliquez sur "Sauvegarder"</span>
+          <span data-i18n="history_empty">Aucun QR code sauvegardé</span>
+          <span class="empty-sub" data-i18n="history_empty_sub">Générez un QR code et cliquez sur "Sauvegarder"</span>
         </div>
       </div>
     </div>
@@ -456,55 +459,61 @@
       <!-- Hero -->
       <div class="about-hero">
         <div class="about-hero-icon" aria-hidden="true">▦</div>
-        <h1 class="about-hero-title">Le générateur de QR codes<br>simple, rapide et gratuit.</h1>
-        <p class="about-hero-sub">Aucune inscription. Aucun cookie. Aucune donnée collectée. Juste votre QR code.</p>
+        <h1 class="about-hero-title" data-i18n="about_hero_title">Le générateur de QR codes<br>simple, rapide et gratuit.</h1>
+        <p class="about-hero-sub" data-i18n="about_hero_sub">Aucune inscription. Aucun cookie. Aucune donnée collectée. Juste votre QR code.</p>
       </div>
 
       <!-- Pourquoi nous choisir -->
       <div class="about-section">
-        <h2 class="about-section-title">Pourquoi utiliser qrcodegenerator.fr ?</h2>
+        <h2 class="about-section-title" data-i18n="about_why_title">Pourquoi utiliser qrcodegenerator.fr ?</h2>
         <div class="about-features">
 
           <article class="feature-card">
             <div class="feature-icon" aria-hidden="true">⚡</div>
-            <h3 class="feature-title">Gratuit et sans limite</h3>
-            <p class="feature-desc">Générez autant de QR codes que vous voulez, sans abonnement, sans compte, sans carte bancaire. 100% gratuit aujourd'hui et pour toujours.</p>
+            <h3 class="feature-title" data-i18n="feat1_title">Gratuit et sans limite</h3>
+            <p class="feature-desc" data-i18n="feat1_desc">Générez autant de QR codes que vous voulez, sans abonnement, sans compte, sans carte bancaire. 100% gratuit aujourd'hui et pour toujours.</p>
           </article>
 
           <article class="feature-card">
             <div class="feature-icon" aria-hidden="true">🚀</div>
-            <h3 class="feature-title">Instantané</h3>
-            <p class="feature-desc">L'aperçu se met à jour en temps réel à chaque frappe. Pas d'attente, pas de bouton "Générer" à cliquer. Votre QR code est prêt en moins d'une seconde.</p>
+            <h3 class="feature-title" data-i18n="feat2_title">Instantané</h3>
+            <p class="feature-desc" data-i18n="feat2_desc">L'aperçu se met à jour en temps réel à chaque frappe. Pas d'attente, pas de bouton "Générer" à cliquer. Votre QR code est prêt en moins d'une seconde.</p>
           </article>
 
           <article class="feature-card">
             <div class="feature-icon" aria-hidden="true">🎨</div>
-            <h3 class="feature-title">Personnalisation complète</h3>
-            <p class="feature-desc">Couleurs, taille, logo au centre (Facebook, Instagram, votre propre logo…), niveau de correction d'erreur — maîtrisez chaque détail de votre QR code.</p>
+            <h3 class="feature-title" data-i18n="feat3_title">Personnalisation complète</h3>
+            <p class="feature-desc" data-i18n="feat3_desc">Couleurs, taille, logo au centre (Facebook, Instagram, votre propre logo…), niveau de correction d'erreur — maîtrisez chaque détail de votre QR code.</p>
           </article>
 
           <article class="feature-card">
             <div class="feature-icon" aria-hidden="true">🔧</div>
-            <h3 class="feature-title">Flexible et polyvalent</h3>
-            <p class="feature-desc">URL, texte libre, WiFi, email, SMS, contact vCard, fichier… 8 types de contenu différents pour couvrir tous les usages professionnels et personnels.</p>
+            <h3 class="feature-title" data-i18n="feat4_title">Flexible et polyvalent</h3>
+            <p class="feature-desc" data-i18n="feat4_desc">URL, texte libre, WiFi, email, SMS, contact vCard, fichier… 8 types de contenu différents pour couvrir tous les usages professionnels et personnels.</p>
           </article>
 
           <article class="feature-card">
             <div class="feature-icon" aria-hidden="true">🔒</div>
-            <h3 class="feature-title">Aucune donnée collectée</h3>
-            <p class="feature-desc">Zéro cookie de tracking. Zéro collecte de données personnelles. Tout se passe dans votre navigateur — vos contenus ne quittent jamais votre appareil.</p>
+            <h3 class="feature-title" data-i18n="feat5_title">Aucune donnée collectée</h3>
+            <p class="feature-desc" data-i18n="feat5_desc">Zéro cookie de tracking. Zéro collecte de données personnelles. Tout se passe dans votre navigateur — vos contenus ne quittent jamais votre appareil.</p>
           </article>
 
           <article class="feature-card">
             <div class="feature-icon" aria-hidden="true">📥</div>
-            <h3 class="feature-title">Export PNG, SVG &amp; PDF</h3>
-            <p class="feature-desc">Téléchargez vos QR codes dans le format adapté à votre usage : PNG pour le web, SVG vectoriel pour l'impression, PDF mis en page pour les documents professionnels.</p>
+            <h3 class="feature-title" data-i18n="feat6_title">Export PNG, SVG &amp; PDF</h3>
+            <p class="feature-desc" data-i18n="feat6_desc">Téléchargez vos QR codes dans le format adapté à votre usage : PNG pour le web, SVG vectoriel pour l'impression, PDF mis en page pour les documents professionnels.</p>
           </article>
 
           <article class="feature-card">
             <div class="feature-icon" aria-hidden="true">♾️</div>
-            <h3 class="feature-title">QR codes permanents</h3>
-            <p class="feature-desc">Contrairement à d'autres services qui font expirer vos QR codes si vous ne payez pas, les nôtres sont valables à vie. Pas d'abonnement caché, pas de surprise — votre QR code fonctionnera dans 10 ans comme aujourd'hui.</p>
+            <h3 class="feature-title" data-i18n="feat7_title">QR codes permanents</h3>
+            <p class="feature-desc" data-i18n="feat7_desc">Contrairement à d'autres services qui font expirer vos QR codes si vous ne payez pas, les nôtres sont valables à vie. Pas d'abonnement caché, pas de surprise — votre QR code fonctionnera dans 10 ans comme aujourd'hui.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">🌍</div>
+            <h3 class="feature-title" data-i18n="feat8_title">Disponible en français et en anglais</h3>
+            <p class="feature-desc" data-i18n="feat8_desc">L'interface est entièrement disponible en français et en anglais. Changez de langue en un clic depuis le bouton en haut à droite.</p>
           </article>
 
         </div>
@@ -514,27 +523,27 @@
       <div class="about-section about-section-alt">
         <div class="about-who">
           <div class="about-who-text">
-            <h2 class="about-section-title">Qui sommes-nous ?</h2>
-            <p>QRCodeGenerator.fr a été créé par un jeune développeur passionné par les outils simples et véritablement utiles. Fatigué des générateurs de QR codes surchargés, truffés de publicités intrusives ou qui demandent une inscription juste pour télécharger une image, il a décidé d'en construire un différent.</p>
-            <p>Notre conviction&nbsp;: un bon outil doit être accessible à tous, sans friction. Pas d'interface compliquée, pas de compte à créer, pas de données aspirées en arrière-plan. Juste un outil qui fait ce qu'il promet — et qui le fait bien.</p>
-            <p>QRCodeGenerator.fr est l'un des rares générateurs qui traite tout localement dans votre navigateur. Votre URL, votre mot de passe WiFi ou votre fiche contact ne transitent par aucun serveur. Ils ne sont jamais stockés, jamais partagés, jamais monétisés.</p>
+            <h2 class="about-section-title" data-i18n="about_who_title">Qui sommes-nous ?</h2>
+            <p data-i18n="about_who_p1">QRCodeGenerator.fr a été créé par un jeune développeur passionné par les outils simples et véritablement utiles. Fatigué des générateurs de QR codes surchargés, truffés de publicités intrusives ou qui demandent une inscription juste pour télécharger une image, il a décidé d'en construire un différent.</p>
+            <p data-i18n="about_who_p2">Notre conviction : un bon outil doit être accessible à tous, sans friction. Pas d'interface compliquée, pas de compte à créer, pas de données aspirées en arrière-plan. Juste un outil qui fait ce qu'il promet — et qui le fait bien.</p>
+            <p data-i18n="about_who_p3">QRCodeGenerator.fr est l'un des rares générateurs qui traite tout localement dans votre navigateur. Votre URL, votre mot de passe WiFi ou votre fiche contact ne transitent par aucun serveur. Ils ne sont jamais stockés, jamais partagés, jamais monétisés.</p>
           </div>
           <div class="about-who-stats" aria-label="Chiffres clés">
             <div class="stat-card">
               <span class="stat-num">8</span>
-              <span class="stat-label">Types de contenu</span>
+              <span class="stat-label" data-i18n="stat1">Types de contenu</span>
             </div>
             <div class="stat-card">
               <span class="stat-num">3</span>
-              <span class="stat-label">Formats d'export</span>
+              <span class="stat-label" data-i18n="stat2">Formats d'export</span>
             </div>
             <div class="stat-card">
               <span class="stat-num">0</span>
-              <span class="stat-label">Cookie traceur</span>
+              <span class="stat-label" data-i18n="stat3">Cookie traceur</span>
             </div>
             <div class="stat-card">
               <span class="stat-num">∞</span>
-              <span class="stat-label">QR codes gratuits</span>
+              <span class="stat-label" data-i18n="stat4">QR codes gratuits</span>
             </div>
           </div>
         </div>
@@ -542,76 +551,189 @@
 
       <!-- Contact -->
       <div class="about-section" id="contact">
-        <h2 class="about-section-title">Contact &amp; support</h2>
-        <p class="about-contact-intro">Un bug à signaler, une fonctionnalité à suggérer ou juste un retour positif ? Nous lisons tous les messages et répondons dans les meilleurs délais.</p>
+        <h2 class="about-section-title" data-i18n="contact_title">Contact &amp; support</h2>
+        <p class="about-contact-intro" data-i18n="contact_intro">Un bug à signaler, une fonctionnalité à suggérer ou juste un retour positif ? Nous lisons tous les messages et répondons dans les meilleurs délais.</p>
 
         <form class="contact-form" id="contactForm"
               action="https://formspree.io/f/mdayqjpa"
               method="POST">
           <div class="contact-grid">
             <div class="form-row">
-              <label class="sub-label" for="contactName">Votre prénom</label>
-              <input type="text" id="contactName" name="name" class="text-input" placeholder="Jean" autocomplete="given-name" />
+              <label class="sub-label" for="contactName" data-i18n="contact_name_label">Votre prénom</label>
+              <input type="text" id="contactName" name="name" class="text-input" data-i18n-ph="ph_contact_name" placeholder="Jean" autocomplete="given-name" />
             </div>
             <div class="form-row">
-              <label class="sub-label" for="contactEmail">Votre email</label>
-              <input type="email" id="contactEmail" name="email" class="text-input" placeholder="jean@exemple.com" autocomplete="email" />
+              <label class="sub-label" for="contactEmail" data-i18n="contact_email_label">Votre email</label>
+              <input type="email" id="contactEmail" name="email" class="text-input" data-i18n-ph="ph_contact_email" placeholder="jean@exemple.com" autocomplete="email" />
             </div>
           </div>
           <div class="form-row">
-            <label class="sub-label" for="contactSubject">Sujet</label>
+            <label class="sub-label" for="contactSubject" data-i18n="contact_subject_label">Sujet</label>
             <select id="contactSubject" name="subject" class="select-input">
-              <option value="">— Choisissez un sujet —</option>
-              <option value="bug">🐛 Signaler un bug</option>
-              <option value="feature">💡 Suggérer une fonctionnalité</option>
-              <option value="question">❓ Question générale</option>
-              <option value="other">💬 Autre</option>
+              <option value="" data-i18n="contact_subject_default">— Choisissez un sujet —</option>
+              <option value="bug" data-i18n="contact_subject_bug">🐛 Signaler un bug</option>
+              <option value="feature" data-i18n="contact_subject_feature">💡 Suggérer une fonctionnalité</option>
+              <option value="question" data-i18n="contact_subject_question">❓ Question générale</option>
+              <option value="other" data-i18n="contact_subject_other">💬 Autre</option>
             </select>
           </div>
           <div class="form-row">
-            <label class="sub-label" for="contactMessage">Message <span class="required-star">*</span></label>
+            <label class="sub-label" for="contactMessage" data-i18n="contact_msg_label">Message <span class="required-star">*</span></label>
             <textarea id="contactMessage" name="message" class="qr-input" rows="5"
-                      placeholder="Décrivez votre problème ou suggestion..."
+                      data-i18n-ph="ph_contact_msg" placeholder="Décrivez votre problème ou suggestion..."
                       required aria-required="true"></textarea>
             <span class="char-count" id="charCount" aria-live="polite">0 / 1000</span>
           </div>
-          <!-- Honeypot anti-spam -->
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
           <div class="contact-actions">
-            <button type="submit" class="primary-btn" id="contactSubmit">
-              ▶ ENVOYER LE MESSAGE
-            </button>
-            <p class="contact-note">Nous ne partageons jamais votre adresse email.</p>
+            <button type="submit" class="primary-btn" id="contactSubmit" data-i18n="contact_send">▶ ENVOYER LE MESSAGE</button>
+            <p class="contact-note" data-i18n="contact_note">Nous ne partageons jamais votre adresse email.</p>
           </div>
           <div class="contact-success" id="contactSuccess" style="display:none;" role="alert">
             <span class="success-icon">✓</span>
             <div>
-              <strong>Message envoyé !</strong>
-              <p>Merci pour votre retour. Nous vous répondrons dans les 48h si vous avez laissé un email.</p>
+              <strong data-i18n="contact_success_title">Message envoyé !</strong>
+              <p data-i18n="contact_success_msg">Merci pour votre retour. Nous vous répondrons dans les 48h si vous avez laissé un email.</p>
             </div>
           </div>
           <div class="contact-error" id="contactError" style="display:none;" role="alert">
             <span>⚠</span>
-            <p id="contactErrorMsg">Une erreur est survenue. Réessayez.</p>
+            <p id="contactErrorMsg" data-i18n="contact_error">Une erreur est survenue. Réessayez.</p>
           </div>
         </form>
+      </div>
 
-        <div class="contact-alternatives">
-          <div class="alt-contact-card">
-            <span class="alt-icon" aria-hidden="true">📧</span>
-            <div>
-              <strong>Email direct</strong>
-              <p>contact@qrcodegenerator.fr</p>
+    </div>
+  </section>
+
+
+  <!-- ====== GUIDE ====== -->
+  <section class="tab-content" id="tab-guide">
+    <div class="about-container">
+
+      <div class="about-hero">
+        <div class="about-hero-icon" aria-hidden="true">📡</div>
+        <h1 class="about-hero-title" data-i18n="guide_hero_title">Comment fonctionne<br>un QR code ?</h1>
+        <p class="about-hero-sub" data-i18n="guide_hero_sub">Tout ce que vous avez toujours voulu savoir sur les QR codes — en clair, sans jargon.</p>
+      </div>
+
+      <!-- Qu'est-ce qu'un QR code -->
+      <div class="about-section">
+        <h2 class="about-section-title" data-i18n="guide_what_title">Qu'est-ce qu'un QR code ?</h2>
+        <div class="guide-text">
+          <p data-i18n="guide_what_p1">QR signifie <strong>Quick Response</strong> — réponse rapide. Inventé en 1994 par la société japonaise Denso Wave pour tracer des pièces automobiles, le QR code est devenu l'un des formats d'encodage d'information les plus utilisés au monde.</p>
+          <p data-i18n="guide_what_p2">Contrairement à un code-barres classique qui ne stocke qu'une ligne de données, un QR code est <strong>bidimensionnel</strong> : il encode l'information à la fois horizontalement et verticalement, ce qui lui permet de contenir beaucoup plus de données dans un espace réduit.</p>
+        </div>
+      </div>
+
+      <!-- Anatomie -->
+      <div class="about-section about-section-alt">
+        <h2 class="about-section-title" data-i18n="guide_anatomy_title">Anatomie d'un QR code</h2>
+        <div class="guide-anatomy-grid">
+          <div class="guide-anatomy-card">
+            <div class="guide-anatomy-icon">⬛</div>
+            <h3 data-i18n="guide_anat1_title">Coins de détection</h3>
+            <p data-i18n="guide_anat1_desc">Les 3 grands carrés dans les coins servent à indiquer au lecteur l'orientation et la position du code. Sans eux, impossible de savoir dans quel sens lire le QR code.</p>
+          </div>
+          <div class="guide-anatomy-card">
+            <div class="guide-anatomy-icon">🔲</div>
+            <h3 data-i18n="guide_anat2_title">Modules de données</h3>
+            <p data-i18n="guide_anat2_desc">Les petits carrés noir et blanc au centre encodent l'information réelle — URL, texte, contact… Chaque module représente un bit : noir = 1, blanc = 0.</p>
+          </div>
+          <div class="guide-anatomy-card">
+            <div class="guide-anatomy-icon">🛡️</div>
+            <h3 data-i18n="guide_anat3_title">Correction d'erreur</h3>
+            <p data-i18n="guide_anat3_desc">Un QR code contient des données redondantes. Même endommagé ou partiellement caché (par un logo par exemple), il reste lisible. Le niveau H permet jusqu'à 30% de perte.</p>
+          </div>
+          <div class="guide-anatomy-card">
+            <div class="guide-anatomy-icon">📐</div>
+            <h3 data-i18n="guide_anat4_title">Zone silencieuse</h3>
+            <p data-i18n="guide_anat4_desc">La bordure blanche autour du QR code est obligatoire. Elle permet au lecteur de distinguer le code de son environnement. Sans cette marge, le code risque de ne pas être reconnu.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comment il est lu -->
+      <div class="about-section">
+        <h2 class="about-section-title" data-i18n="guide_read_title">Comment un smartphone le lit-il ?</h2>
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="guide-step-num">1</div>
+            <div class="guide-step-body">
+              <h3 data-i18n="guide_step1_title">Capture de l'image</h3>
+              <p data-i18n="guide_step1_desc">L'appareil photo détecte les 3 coins de détection et calcule la perspective pour redresser l'image, même si le code est incliné ou photographié en biais.</p>
             </div>
           </div>
-          <div class="alt-contact-card">
-            <span class="alt-icon" aria-hidden="true">⏱</span>
-            <div>
-              <strong>Délai de réponse</strong>
-              <p>Sous 48h en général</p>
+          <div class="guide-step">
+            <div class="guide-step-num">2</div>
+            <div class="guide-step-body">
+              <h3 data-i18n="guide_step2_title">Décodage binaire</h3>
+              <p data-i18n="guide_step2_desc">Chaque module noir/blanc est converti en 0 ou 1. L'algorithme lit ces bits selon un schéma précis défini par la norme ISO 18004 pour reconstituer les données originales.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-num">3</div>
+            <div class="guide-step-body">
+              <h3 data-i18n="guide_step3_title">Correction et vérification</h3>
+              <p data-i18n="guide_step3_desc">Le système de correction d'erreur (Reed-Solomon) reconstruit automatiquement les données manquantes ou abîmées avant de délivrer le résultat final.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-num">4</div>
+            <div class="guide-step-body">
+              <h3 data-i18n="guide_step4_title">Action déclenchée</h3>
+              <p data-i18n="guide_step4_desc">Le téléphone interprète le contenu : ouvre un navigateur si c'est une URL, propose d'ajouter un contact si c'est une vCard, connecte au WiFi automatiquement, etc.</p>
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- Niveaux de correction -->
+      <div class="about-section about-section-alt">
+        <h2 class="about-section-title" data-i18n="guide_ec_title">Les niveaux de correction d'erreur</h2>
+        <p class="guide-intro-text" data-i18n="guide_ec_intro">Plus le niveau est élevé, plus le QR code est robuste — mais plus il est dense et complexe. Choisissez selon votre usage.</p>
+        <div class="guide-ec-grid">
+          <div class="guide-ec-card">
+            <div class="guide-ec-level">L</div>
+            <div class="guide-ec-pct">7%</div>
+            <p data-i18n="guide_ec_l">Idéal pour un usage numérique simple où le code ne risque pas d'être abîmé.</p>
+          </div>
+          <div class="guide-ec-card">
+            <div class="guide-ec-level">M</div>
+            <div class="guide-ec-pct">15%</div>
+            <p data-i18n="guide_ec_m">Le bon équilibre pour la plupart des usages. Recommandé par défaut.</p>
+          </div>
+          <div class="guide-ec-card guide-ec-card--highlight">
+            <div class="guide-ec-level">Q</div>
+            <div class="guide-ec-pct">25%</div>
+            <p data-i18n="guide_ec_q">Recommandé pour l'impression sur des surfaces susceptibles d'être rayées ou salies.</p>
+          </div>
+          <div class="guide-ec-card">
+            <div class="guide-ec-level">H</div>
+            <div class="guide-ec-pct">30%</div>
+            <p data-i18n="guide_ec_h">Obligatoire si vous ajoutez un logo au centre. Compense les modules masqués.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Capacité -->
+      <div class="about-section">
+        <h2 class="about-section-title" data-i18n="guide_capacity_title">Combien d'informations peut-on stocker ?</h2>
+        <div class="guide-text">
+          <p data-i18n="guide_capacity_p1">La capacité dépend du type de données et du niveau de correction. En mode alphanumérique, un QR code peut contenir jusqu'à <strong>4 296 caractères</strong>. Pour une simple URL, c'est largement suffisant — une adresse web courte ne dépasse généralement pas 50 à 100 caractères.</p>
+          <p data-i18n="guide_capacity_p2">Plus le contenu est long, plus le QR code devient dense et difficile à lire à distance. Pour les vCards ou les textes longs, préférez le niveau de correction L pour maximiser la capacité encodable.</p>
+        </div>
+        <div class="guide-tip">
+          <span class="guide-tip-icon">💡</span>
+          <p data-i18n="guide_tip">Conseil : utilisez un raccourcisseur d'URL (bit.ly, short.io…) avant de générer votre QR code. Un lien court produit un QR code moins dense, plus facile à scanner — surtout en petite taille.</p>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="about-section guide-cta-section">
+        <h2 class="about-section-title" data-i18n="guide_cta_title">Prêt à créer votre QR code ?</h2>
+        <p data-i18n="guide_cta_desc">Maintenant que vous savez tout, passez à la pratique — gratuitement, sans inscription, en quelques secondes.</p>
+        <button class="primary-btn guide-cta-btn" id="guideCTA" data-i18n="guide_cta_btn">▶ CRÉER MON QR CODE</button>
       </div>
 
     </div>
@@ -621,7 +743,7 @@
 
 <!-- Publicité — bande horizontale avant le footer -->
 <div class="ad-slot ad-slot-footer">
-  <div class="ad-label">Publicité</div>
+  <div class="ad-label" data-i18n="ad_label">Publicité</div>
   <ins class="adsbygoogle"
        style="display:block"
        data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
@@ -633,8 +755,8 @@
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <span>▦ qrcodegenerator.fr — 100% gratuit, 0% cloud</span>
-    <span>Vos données restent sur votre appareil</span>
+    <span data-i18n="footer_left">▦ qrcodegenerator.fr — 100% gratuit, 0% cloud</span>
+    <span data-i18n="footer_right">Vos données restent sur votre appareil</span>
   </div>
 </footer>
 

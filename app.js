@@ -1,5 +1,298 @@
 'use strict';
 
+// ── i18n ───────────────────────────────────────────────────────
+const TRANSLATIONS = {
+  fr: {
+    nav_generator: 'Générateur', nav_batch: 'Batch', nav_history: 'Historique', nav_about: 'À propos',
+    ticker_instant: '▸ QR Codes instantanés', ticker_formats: '▸ PNG · SVG · PDF gratuits',
+    ticker_logo: '▸ Logo personnalisé', ticker_batch: '▸ Mode batch x10',
+    ticker_types: '▸ WiFi · Email · SMS · vCard', ticker_permanent: '▸ QR Codes permanents — sans abonnement',
+    label_content_type: 'TYPE DE CONTENU', label_content: 'CONTENU',
+    type_text: 'Texte', type_phone: 'Téléphone', type_vcard: 'Contact', type_file: 'Fichier',
+    url_label: 'Adresse web', text_label: 'Texte libre',
+    email_addr_label: 'Adresse email', email_subject_label: 'Sujet (optionnel)', email_body_label: 'Corps du message (optionnel)',
+    phone_label: 'Numéro de téléphone',
+    wifi_ssid_label: 'Nom du réseau (SSID)', wifi_pw_label: 'Mot de passe', wifi_enc_label: 'Chiffrement',
+    wifi_open: 'Aucun (ouvert)', wifi_hidden: 'Réseau masqué (hidden SSID)',
+    sms_msg_label: 'Message (optionnel)',
+    vcard_first: 'Prénom', vcard_last: 'Nom', vcard_org: 'Organisation', vcard_title: 'Titre / Poste',
+    vcard_phone: 'Téléphone', vcard_website: 'Site web', vcard_address: 'Adresse',
+    file_label: 'Lien vers le fichier hébergé', file_hint: 'Hébergez votre fichier sur', file_hint2: 'puis collez le lien de partage ci-dessus.',
+    label_custom: 'PERSONNALISATION', color_qr: 'Couleur QR', color_bg: 'Fond',
+    size_label: 'Taille (px)', size_label2: 'Taille', ec_label: 'Correction',
+    label_logo: 'LOGO AU CENTRE', preset_logos: 'LOGOS PRÉINTÉGRÉS',
+    drop_text: 'Glissez une image ou', drop_browse: 'Parcourir',
+    logo_size: 'Taille logo', logo_remove: '✕ Supprimer',
+    label_tag: 'ÉTIQUETTE POUR HISTORIQUE (optionnel)', tag_placeholder: 'ex: Menu restaurant Été 2025',
+    ph_url: 'https://exemple.com',
+    ph_text: '-10% sur tout le magasin ! 🛍️',
+    ph_email_addr: 'contact@exemple.com',
+    ph_email_subject: "Demande d'information",
+    ph_email_body: 'Bonjour, je souhaite...',
+    ph_phone: '6 12 34 56 78',
+    ph_wifi_ssid: 'MonReseau_5G',
+    ph_wifi_pw: 'MotDePasse123',
+    ph_sms_msg: 'Votre message...',
+    ph_vcard_first: 'Jean', ph_vcard_last: 'Dupont',
+    ph_vcard_org: 'Mon Entreprise', ph_vcard_title: 'Directeur Commercial',
+    ph_vcard_phone: '+33 6 12 34 56 78',
+    ph_vcard_email: 'jean.dupont@exemple.com',
+    ph_vcard_url: 'https://exemple.com',
+    ph_vcard_addr: '1 rue de la Paix, 75001 Paris',
+    ph_file_url: 'https://drive.google.com/… ou https://dropbox.com/…',
+    ph_contact_name: 'Jean', ph_contact_email: 'jean@exemple.com',
+    ph_contact_msg: 'Décrivez votre problème ou suggestion...',
+    preview_title: 'APERÇU LIVE', placeholder_text: 'Remplissez le formulaire',
+    dl_btn: '↓ Télécharger', save_btn: "⊕ Sauvegarder dans l'historique",
+    ad_label: 'Publicité',
+    batch_title: 'GÉNÉRATION BATCH', batch_desc: "Entrez jusqu'à 10 URLs ou textes, un par ligne.",
+    batch_generate: '▶ GÉNÉRER TOUT', batch_dl_png: '↓ Tout en PNG', batch_dl_pdf: '↓ PDF multi-pages',
+    batch_empty: 'Vos QR codes apparaîtront ici',
+    history_title: 'HISTORIQUE LOCAL', history_clear: '✕ Tout effacer',
+    history_empty: 'Aucun QR code sauvegardé', history_empty_sub: 'Générez un QR code et cliquez sur "Sauvegarder"',
+    about_hero_title: 'Le générateur de QR codes<br>simple, rapide et gratuit.',
+    about_hero_sub: 'Aucune inscription. Aucun cookie. Aucune donnée collectée. Juste votre QR code.',
+    about_why_title: 'Pourquoi utiliser qrcodegenerator.fr ?',
+    feat1_title: 'Gratuit et sans limite', feat1_desc: "Générez autant de QR codes que vous voulez, sans abonnement, sans compte, sans carte bancaire. 100% gratuit aujourd'hui et pour toujours.",
+    feat2_title: 'Instantané', feat2_desc: "L'aperçu se met à jour en temps réel à chaque frappe. Pas d'attente, pas de bouton Générer à cliquer. Votre QR code est prêt en moins d'une seconde.",
+    feat3_title: 'Personnalisation complète', feat3_desc: "Couleurs, taille, logo au centre (Facebook, Instagram, votre propre logo…), niveau de correction d'erreur — maîtrisez chaque détail de votre QR code.",
+    feat4_title: 'Flexible et polyvalent', feat4_desc: 'URL, texte libre, WiFi, email, SMS, contact vCard, fichier… 8 types de contenu différents pour couvrir tous les usages professionnels et personnels.',
+    feat5_title: 'Aucune donnée collectée', feat5_desc: 'Zéro cookie de tracking. Zéro collecte de données personnelles. Tout se passe dans votre navigateur — vos contenus ne quittent jamais votre appareil.',
+    feat6_title: 'Export PNG, SVG & PDF', feat6_desc: "Téléchargez vos QR codes dans le format adapté à votre usage : PNG pour le web, SVG vectoriel pour l'impression, PDF mis en page pour les documents professionnels.",
+    feat7_title: 'QR codes permanents', feat7_desc: "Contrairement à d'autres services qui font expirer vos QR codes si vous ne payez pas, les nôtres sont valables à vie. Pas d'abonnement caché, pas de surprise — votre QR code fonctionnera dans 10 ans comme aujourd'hui.",
+    about_who_title: 'Qui sommes-nous ?',
+    about_who_p1: "QRCodeGenerator.fr a été créé par un jeune développeur passionné par les outils simples et véritablement utiles. Fatigué des générateurs de QR codes surchargés, truffés de publicités intrusives ou qui demandent une inscription juste pour télécharger une image, il a décidé d'en construire un différent.",
+    about_who_p2: "Notre conviction : un bon outil doit être accessible à tous, sans friction. Pas d'interface compliquée, pas de compte à créer, pas de données aspirées en arrière-plan. Juste un outil qui fait ce qu'il promet — et qui le fait bien.",
+    about_who_p3: "QRCodeGenerator.fr est l'un des rares générateurs qui traite tout localement dans votre navigateur. Votre URL, votre mot de passe WiFi ou votre fiche contact ne transitent par aucun serveur. Ils ne sont jamais stockés, jamais partagés, jamais monétisés.",
+    stat1: 'Types de contenu', stat2: "Formats d'export", stat3: 'Cookie traceur', stat4: 'QR codes gratuits',
+    contact_title: 'Contact & support', contact_intro: 'Un bug à signaler, une fonctionnalité à suggérer ou juste un retour positif ? Nous lisons tous les messages et répondons dans les meilleurs délais.',
+    contact_name_label: 'Votre prénom', contact_email_label: 'Votre email', contact_subject_label: 'Sujet',
+    contact_subject_default: '— Choisissez un sujet —', contact_subject_bug: '🐛 Signaler un bug',
+    contact_subject_feature: '💡 Suggérer une fonctionnalité', contact_subject_question: '❓ Question générale', contact_subject_other: '💬 Autre',
+    contact_msg_label: 'Message', contact_send: '▶ ENVOYER LE MESSAGE', contact_note: 'Nous ne partageons jamais votre adresse email.',
+    contact_success_title: 'Message envoyé !', contact_success_msg: 'Merci pour votre retour. Nous vous répondrons dans les 48h si vous avez laissé un email.',
+    contact_error: 'Une erreur est survenue. Réessayez.',
+    footer_left: '▦ qrcodegenerator.fr — 100% gratuit, 0% cloud', footer_right: 'Vos données restent sur votre appareil',
+    toast_logo_selected: '✓ Logo sélectionné — correction H activée',
+    toast_logo_added: '✓ Logo ajouté — correction H activée',
+    toast_png: '✓ PNG téléchargé', toast_svg: '✓ SVG téléchargé', toast_pdf: '✓ PDF téléchargé',
+    toast_saved: "✓ Sauvegardé dans l'historique", toast_loaded: '↗ QR code chargé', toast_deleted: '✓ Supprimé',
+    toast_cleared: '✓ Historique effacé', toast_sent: '✓ Message envoyé !',
+    toast_batch_empty: '⚠ Entrez au moins une ligne', toast_generate_first: '⚠ Générez d\'abord',
+    toast_write_msg: '⚠ Veuillez écrire un message',
+    confirm_clear: "Effacer tout l'historique ?",
+    sending: '⏳ Envoi en cours…',
+    hist_entries: (n) => `${n} entrée${n !== 1 ? 's' : ''}`,
+    hist_dl: '↓ PNG', hist_load: '↗ Charger', hist_pdf: '↓ PDF', hist_delete: '✕ Sup.',
+    nav_guide: 'Guide QR',
+    feat8_title: 'Disponible en français et en anglais',
+    feat8_desc: "L'interface est entièrement disponible en français et en anglais. Changez de langue en un clic depuis le bouton en haut à droite.",
+    guide_hero_title: 'Comment fonctionne<br>un QR code ?',
+    guide_hero_sub: "Tout ce que vous avez toujours voulu savoir sur les QR codes — en clair, sans jargon.",
+    guide_what_title: "Qu'est-ce qu'un QR code ?",
+    guide_what_p1: "QR signifie <strong>Quick Response</strong> — réponse rapide. Inventé en 1994 par la société japonaise Denso Wave pour tracer des pièces automobiles, le QR code est devenu l'un des formats d'encodage d'information les plus utilisés au monde.",
+    guide_what_p2: "Contrairement à un code-barres classique qui ne stocke qu'une ligne de données, un QR code est <strong>bidimensionnel</strong> : il encode l'information à la fois horizontalement et verticalement, ce qui lui permet de contenir beaucoup plus de données dans un espace réduit.",
+    guide_anatomy_title: "Anatomie d'un QR code",
+    guide_anat1_title: 'Coins de détection', guide_anat1_desc: "Les 3 grands carrés dans les coins servent à indiquer au lecteur l'orientation et la position du code. Sans eux, impossible de savoir dans quel sens lire le QR code.",
+    guide_anat2_title: 'Modules de données', guide_anat2_desc: "Les petits carrés noir et blanc au centre encodent l'information réelle — URL, texte, contact… Chaque module représente un bit : noir = 1, blanc = 0.",
+    guide_anat3_title: "Correction d'erreur", guide_anat3_desc: "Un QR code contient des données redondantes. Même endommagé ou partiellement caché (par un logo par exemple), il reste lisible. Le niveau H permet jusqu'à 30% de perte.",
+    guide_anat4_title: 'Zone silencieuse', guide_anat4_desc: "La bordure blanche autour du QR code est obligatoire. Elle permet au lecteur de distinguer le code de son environnement. Sans cette marge, le code risque de ne pas être reconnu.",
+    guide_read_title: 'Comment un smartphone le lit-il ?',
+    guide_step1_title: "Capture de l'image", guide_step1_desc: "L'appareil photo détecte les 3 coins de détection et calcule la perspective pour redresser l'image, même si le code est incliné ou photographié en biais.",
+    guide_step2_title: 'Décodage binaire', guide_step2_desc: "Chaque module noir/blanc est converti en 0 ou 1. L'algorithme lit ces bits selon un schéma précis défini par la norme ISO 18004 pour reconstituer les données originales.",
+    guide_step3_title: 'Correction et vérification', guide_step3_desc: "Le système de correction d'erreur (Reed-Solomon) reconstruit automatiquement les données manquantes ou abîmées avant de délivrer le résultat final.",
+    guide_step4_title: 'Action déclenchée', guide_step4_desc: "Le téléphone interprète le contenu : ouvre un navigateur si c'est une URL, propose d'ajouter un contact si c'est une vCard, connecte au WiFi automatiquement, etc.",
+    guide_ec_title: "Les niveaux de correction d'erreur",
+    guide_ec_intro: "Plus le niveau est élevé, plus le QR code est robuste — mais plus il est dense et complexe. Choisissez selon votre usage.",
+    guide_ec_l: "Idéal pour un usage numérique simple où le code ne risque pas d'être abîmé.",
+    guide_ec_m: 'Le bon équilibre pour la plupart des usages. Recommandé par défaut.',
+    guide_ec_q: "Recommandé pour l'impression sur des surfaces susceptibles d'être rayées ou salies.",
+    guide_ec_h: "Obligatoire si vous ajoutez un logo au centre. Compense les modules masqués.",
+    guide_capacity_title: "Combien d'informations peut-on stocker ?",
+    guide_capacity_p1: "La capacité dépend du type de données et du niveau de correction. En mode alphanumérique, un QR code peut contenir jusqu'à <strong>4 296 caractères</strong>. Pour une simple URL, c'est largement suffisant — une adresse web courte ne dépasse généralement pas 50 à 100 caractères.",
+    guide_capacity_p2: "Plus le contenu est long, plus le QR code devient dense et difficile à lire à distance. Pour les vCards ou les textes longs, préférez le niveau de correction L pour maximiser la capacité encodable.",
+    guide_tip: "Conseil : utilisez un raccourcisseur d'URL (bit.ly, short.io…) avant de générer votre QR code. Un lien court produit un QR code moins dense, plus facile à scanner — surtout en petite taille.",
+    guide_cta_title: 'Prêt à créer votre QR code ?',
+    guide_cta_desc: "Maintenant que vous savez tout, passez à la pratique — gratuitement, sans inscription, en quelques secondes.",
+    guide_cta_btn: '▶ CRÉER MON QR CODE',
+    type_labels: { url: 'URL', text: 'TEXTE LIBRE', email: 'EMAIL', phone: 'TÉLÉPHONE', wifi: 'WIFI', sms: 'SMS', vcard: 'CONTACT / vCARD', file: 'FICHIER' },
+  },
+  en: {
+    nav_generator: 'Generator', nav_batch: 'Batch', nav_history: 'History', nav_about: 'About',
+    ticker_instant: '▸ Instant QR Codes', ticker_formats: '▸ Free PNG · SVG · PDF',
+    ticker_logo: '▸ Custom logo', ticker_batch: '▸ Batch mode x10',
+    ticker_types: '▸ WiFi · Email · SMS · vCard', ticker_permanent: '▸ Permanent QR Codes — no subscription',
+    label_content_type: 'CONTENT TYPE', label_content: 'CONTENT',
+    type_text: 'Text', type_phone: 'Phone', type_vcard: 'Contact', type_file: 'File',
+    url_label: 'Web address', text_label: 'Free text',
+    email_addr_label: 'Email address', email_subject_label: 'Subject (optional)', email_body_label: 'Message body (optional)',
+    phone_label: 'Phone number',
+    wifi_ssid_label: 'Network name (SSID)', wifi_pw_label: 'Password', wifi_enc_label: 'Encryption',
+    wifi_open: 'None (open)', wifi_hidden: 'Hidden network (hidden SSID)',
+    sms_msg_label: 'Message (optional)',
+    vcard_first: 'First name', vcard_last: 'Last name', vcard_org: 'Organization', vcard_title: 'Title / Position',
+    vcard_phone: 'Phone', vcard_website: 'Website', vcard_address: 'Address',
+    file_label: 'Link to hosted file', file_hint: 'Host your file on', file_hint2: 'then paste the share link above.',
+    label_custom: 'CUSTOMIZATION', color_qr: 'QR color', color_bg: 'Background',
+    size_label: 'Size (px)', size_label2: 'Size', ec_label: 'Error correction',
+    label_logo: 'CENTER LOGO', preset_logos: 'PRESET LOGOS',
+    drop_text: 'Drop an image or', drop_browse: 'browse',
+    logo_size: 'Logo size', logo_remove: '✕ Remove',
+    label_tag: 'HISTORY LABEL (optional)', tag_placeholder: 'e.g. Summer menu 2025',
+    ph_url: 'https://example.com',
+    ph_text: '-10% off everything! 🛍️',
+    ph_email_addr: 'contact@example.com',
+    ph_email_subject: 'Information request',
+    ph_email_body: 'Hello, I would like to...',
+    ph_phone: '6 12 34 56 78',
+    ph_wifi_ssid: 'MyNetwork_5G',
+    ph_wifi_pw: 'Password123',
+    ph_sms_msg: 'Your message...',
+    ph_vcard_first: 'John', ph_vcard_last: 'Smith',
+    ph_vcard_org: 'My Company', ph_vcard_title: 'Sales Manager',
+    ph_vcard_phone: '+44 7911 123456',
+    ph_vcard_email: 'john.smith@example.com',
+    ph_vcard_url: 'https://example.com',
+    ph_vcard_addr: '1 London Road, London SW1A 1AA',
+    ph_file_url: 'https://drive.google.com/… or https://dropbox.com/…',
+    ph_contact_name: 'John', ph_contact_email: 'john@example.com',
+    ph_contact_msg: 'Describe your issue or suggestion...',
+    preview_title: 'LIVE PREVIEW', placeholder_text: 'Fill in the form',
+    dl_btn: '↓ Download', save_btn: '⊕ Save to history',
+    ad_label: 'Advertisement',
+    batch_title: 'BATCH GENERATION', batch_desc: 'Enter up to 10 URLs or texts, one per line.',
+    batch_generate: '▶ GENERATE ALL', batch_dl_png: '↓ All as PNG', batch_dl_pdf: '↓ Multi-page PDF',
+    batch_empty: 'Your QR codes will appear here',
+    history_title: 'LOCAL HISTORY', history_clear: '✕ Clear all',
+    history_empty: 'No saved QR codes', history_empty_sub: 'Generate a QR code and click "Save"',
+    about_hero_title: 'The QR code generator<br>simple, fast and free.',
+    about_hero_sub: 'No sign-up. No cookies. No data collected. Just your QR code.',
+    about_why_title: 'Why use qrcodegenerator.fr?',
+    feat1_title: 'Free and unlimited', feat1_desc: 'Generate as many QR codes as you want — no subscription, no account, no credit card. 100% free today and forever.',
+    feat2_title: 'Instant', feat2_desc: 'The preview updates in real time as you type. No waiting, no Generate button to click. Your QR code is ready in under a second.',
+    feat3_title: 'Full customization', feat3_desc: 'Colors, size, center logo (Facebook, Instagram, your own logo…), error correction level — control every detail of your QR code.',
+    feat4_title: 'Flexible and versatile', feat4_desc: 'URL, free text, WiFi, email, SMS, vCard contact, file… 8 different content types to cover all professional and personal use cases.',
+    feat5_title: 'No data collected', feat5_desc: 'Zero tracking cookies. Zero personal data collection. Everything happens in your browser — your content never leaves your device.',
+    feat6_title: 'Export PNG, SVG & PDF', feat6_desc: 'Download your QR codes in the format that suits your needs: PNG for the web, vector SVG for print, PDF layout for professional documents.',
+    feat7_title: 'Permanent QR codes', feat7_desc: "Unlike other services that expire your QR codes if you don't pay, ours are valid for life. No hidden subscription, no surprises — your QR code will work in 10 years just as it does today.",
+    about_who_title: 'Who are we?',
+    about_who_p1: 'QRCodeGenerator.fr was built by a young developer passionate about simple, genuinely useful tools. Fed up with bloated QR code generators full of intrusive ads or requiring sign-up just to download an image, he decided to build a different one.',
+    about_who_p2: 'Our belief: a good tool should be accessible to everyone, friction-free. No complicated interface, no account to create, no data harvested in the background. Just a tool that does what it promises — and does it well.',
+    about_who_p3: 'QRCodeGenerator.fr processes everything locally in your browser. Your URL, WiFi password, or contact card never pass through any server. They are never stored, never shared, never monetized.',
+    stat1: 'Content types', stat2: 'Export formats', stat3: 'Tracking cookies', stat4: 'Free QR codes',
+    contact_title: 'Contact & support', contact_intro: 'Found a bug, have a feature request, or just want to share feedback? We read every message and reply as soon as possible.',
+    contact_name_label: 'Your first name', contact_email_label: 'Your email', contact_subject_label: 'Subject',
+    contact_subject_default: '— Choose a subject —', contact_subject_bug: '🐛 Report a bug',
+    contact_subject_feature: '💡 Suggest a feature', contact_subject_question: '❓ General question', contact_subject_other: '💬 Other',
+    contact_msg_label: 'Message', contact_send: '▶ SEND MESSAGE', contact_note: 'We never share your email address.',
+    contact_success_title: 'Message sent!', contact_success_msg: "Thanks for your feedback. We'll reply within 48h if you left an email.",
+    contact_error: 'An error occurred. Please try again.',
+    footer_left: '▦ qrcodegenerator.fr — 100% free, 0% cloud', footer_right: 'Your data stays on your device',
+    toast_logo_selected: '✓ Logo selected — H correction enabled',
+    toast_logo_added: '✓ Logo added — H correction enabled',
+    toast_png: '✓ PNG downloaded', toast_svg: '✓ SVG downloaded', toast_pdf: '✓ PDF downloaded',
+    toast_saved: '✓ Saved to history', toast_loaded: '↗ QR code loaded', toast_deleted: '✓ Deleted',
+    toast_cleared: '✓ History cleared', toast_sent: '✓ Message sent!',
+    toast_batch_empty: '⚠ Enter at least one line', toast_generate_first: '⚠ Generate first',
+    toast_write_msg: '⚠ Please write a message',
+    confirm_clear: 'Clear entire history?',
+    sending: '⏳ Sending…',
+    hist_entries: (n) => `${n} entr${n !== 1 ? 'ies' : 'y'}`,
+    hist_dl: '↓ PNG', hist_load: '↗ Load', hist_pdf: '↓ PDF', hist_delete: '✕ Del.',
+    nav_guide: 'QR Guide',
+    feat8_title: 'Available in French and English',
+    feat8_desc: 'The interface is fully available in French and English. Switch languages with one click from the button in the top right.',
+    guide_hero_title: 'How does<br>a QR code work?',
+    guide_hero_sub: 'Everything you always wanted to know about QR codes — clearly explained, no jargon.',
+    guide_what_title: 'What is a QR code?',
+    guide_what_p1: 'QR stands for <strong>Quick Response</strong>. Invented in 1994 by the Japanese company Denso Wave to track automotive parts, the QR code has become one of the most widely used information encoding formats in the world.',
+    guide_what_p2: 'Unlike a traditional barcode that only stores one line of data, a QR code is <strong>two-dimensional</strong>: it encodes information both horizontally and vertically, allowing it to store far more data in a compact space.',
+    guide_anatomy_title: 'Anatomy of a QR code',
+    guide_anat1_title: 'Finder patterns', guide_anat1_desc: "The 3 large squares in the corners tell the reader the orientation and position of the code. Without them, it would be impossible to know which way to read the QR code.",
+    guide_anat2_title: 'Data modules', guide_anat2_desc: "The small black and white squares in the center encode the actual information — URL, text, contact… Each module represents one bit: black = 1, white = 0.",
+    guide_anat3_title: 'Error correction', guide_anat3_desc: "A QR code contains redundant data. Even if damaged or partially hidden (by a logo for example), it remains readable. Level H allows up to 30% data loss.",
+    guide_anat4_title: 'Quiet zone', guide_anat4_desc: "The white border around the QR code is mandatory. It helps the reader distinguish the code from its surroundings. Without this margin, the code may not be recognized.",
+    guide_read_title: 'How does a smartphone read it?',
+    guide_step1_title: 'Image capture', guide_step1_desc: "The camera detects the 3 finder patterns and calculates the perspective to straighten the image, even if the code is tilted or shot at an angle.",
+    guide_step2_title: 'Binary decoding', guide_step2_desc: "Each black/white module is converted to 0 or 1. The algorithm reads these bits according to a precise scheme defined by the ISO 18004 standard to reconstruct the original data.",
+    guide_step3_title: 'Error correction & verification', guide_step3_desc: "The error correction system (Reed-Solomon) automatically reconstructs missing or damaged data before delivering the final result.",
+    guide_step4_title: 'Action triggered', guide_step4_desc: "The phone interprets the content: opens a browser if it is a URL, offers to add a contact if it is a vCard, connects to WiFi automatically, etc.",
+    guide_ec_title: 'Error correction levels',
+    guide_ec_intro: 'The higher the level, the more robust the QR code — but also the denser and more complex. Choose based on your use case.',
+    guide_ec_l: 'Ideal for simple digital use where the code is unlikely to be damaged.',
+    guide_ec_m: 'The right balance for most use cases. Recommended by default.',
+    guide_ec_q: 'Recommended for printing on surfaces that may be scratched or dirty.',
+    guide_ec_h: 'Required if you add a center logo. Compensates for masked modules.',
+    guide_capacity_title: 'How much information can be stored?',
+    guide_capacity_p1: 'Capacity depends on the data type and correction level. In alphanumeric mode, a QR code can hold up to <strong>4,296 characters</strong>. For a simple URL, this is more than enough — a short web address typically stays under 50 to 100 characters.',
+    guide_capacity_p2: 'The longer the content, the denser and harder to scan the QR code becomes at a distance. For vCards or long texts, prefer correction level L to maximize encodable capacity.',
+    guide_tip: 'Tip: use a URL shortener (bit.ly, short.io…) before generating your QR code. A shorter link produces a less dense QR code that is easier to scan — especially at small sizes.',
+    guide_cta_title: 'Ready to create your QR code?',
+    guide_cta_desc: 'Now that you know everything, put it into practice — free, no sign-up, in seconds.',
+    guide_cta_btn: '▶ CREATE MY QR CODE',
+    type_labels: { url: 'URL', text: 'FREE TEXT', email: 'EMAIL', phone: 'PHONE', wifi: 'WIFI', sms: 'SMS', vcard: 'CONTACT / vCARD', file: 'FILE' },
+  }
+};
+
+let currentLang = localStorage.getItem('qrcg-lang') || 'fr';
+
+function t(key) {
+  return TRANSLATIONS[currentLang][key] || TRANSLATIONS['fr'][key] || key;
+}
+
+function applyTranslations() {
+  document.documentElement.lang = currentLang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    const val = TRANSLATIONS[currentLang][key] || TRANSLATIONS['fr'][key];
+    if (val === undefined) return;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      el.placeholder = val;
+    } else if (el.tagName === 'BUTTON') {
+      el.textContent = val;
+    } else if (/<[a-z]/i.test(val)) {
+      // La valeur contient du HTML (ex: <br>, <strong>) : utiliser innerHTML
+      el.innerHTML = val;
+    } else if (el.children.length === 0) {
+      // Pas d'enfants, pas de HTML : textContent suffit
+      el.textContent = val;
+    } else {
+      // Élément avec enfants DOM mais valeur sans HTML : mettre à jour le premier text node
+      for (const node of el.childNodes) {
+        if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+          node.textContent = val;
+          break;
+        }
+      }
+    }
+  });
+  // Update placeholders via data-i18n-ph
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const key = el.dataset.i18nPh;
+    const val = TRANSLATIONS[currentLang][key] || TRANSLATIONS['fr'][key];
+    if (val) el.placeholder = val;
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.dataset.i18nPlaceholder;
+    const val = TRANSLATIONS[currentLang][key] || TRANSLATIONS['fr'][key];
+    if (val) el.placeholder = val;
+  });
+  const langLabel = document.getElementById('langLabel');
+  if (langLabel) langLabel.textContent = currentLang === 'fr' ? '🇬🇧 EN' : '🇫🇷 FR';
+  // Update camera label
+  document.querySelectorAll('.preset-logo-btn').forEach(btn => {
+    if (btn.dataset.logo === 'camera') {
+      const span = btn.querySelector('span:last-child');
+      if (span) span.textContent = currentLang === 'en' ? 'Camera' : 'Caméra';
+    }
+  });
+  const contentLabel = document.getElementById('contentLabel');
+  if (contentLabel) {
+    const activeType = document.querySelector('.type-btn.active');
+    if (activeType) contentLabel.textContent = t('type_labels')[activeType.dataset.type] || t('label_content');
+  }
+}
+
 // ── State ──────────────────────────────────────────────────────
 const state = {
   currentType: 'url',
@@ -29,6 +322,14 @@ $('themeToggle').addEventListener('click', () => {
 });
 html.setAttribute('data-theme', localStorage.getItem('qrcg-theme') || 'light');
 
+// ── Language toggle ────────────────────────────────────────────
+document.getElementById('langToggle').addEventListener('click', () => {
+  currentLang = currentLang === 'fr' ? 'en' : 'fr';
+  localStorage.setItem('qrcg-lang', currentLang);
+  applyTranslations();
+});
+applyTranslations();
+
 // ── Tab Navigation ─────────────────────────────────────────────
 $$('.nav-tab').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -38,6 +339,18 @@ $$('.nav-tab').forEach(btn => {
     btn.classList.add('active');
     $(`tab-${tab}`).classList.add('active');
     if (tab === 'history') renderHistory();
+
+// ── Guide CTA button ───────────────────────────────────────────
+const guideCTABtn = document.getElementById('guideCTA');
+if (guideCTABtn) {
+  guideCTABtn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelector('.nav-tab[data-tab="generator"]').classList.add('active');
+    document.getElementById('tab-generator').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
   });
 });
 
@@ -52,11 +365,7 @@ function showToast(msg, duration = 2800) {
 }
 
 // ── Type selector ──────────────────────────────────────────────
-const TYPE_LABELS = {
-  url: 'URL', text: 'TEXTE LIBRE', email: 'EMAIL',
-  phone: 'TÉLÉPHONE', wifi: 'WIFI', sms: 'SMS',
-  vcard: 'CONTACT / vCARD', file: 'FICHIER',
-};
+// TYPE_LABELS now via i18n t('type_labels')
 
 $$('.type-btn').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -65,7 +374,7 @@ $$('.type-btn').forEach(btn => {
     $$('.content-form').forEach(f => f.classList.remove('active'));
     btn.classList.add('active');
     $(`form-${type}`).classList.add('active');
-    $('contentLabel').textContent = TYPE_LABELS[type] || 'CONTENU';
+    $('contentLabel').textContent = t('type_labels')[type] || t('label_content');
     state.currentType = type;
     scheduleQR();
   });
@@ -178,7 +487,7 @@ const LOGOS = [
   { key: 'tiktok',    label: 'TikTok',    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="18" fill="#010101"/><path fill="#69C9D0" d="M72 25c-5-1-9-4-12-8h-9v48c0 5-4 9-9 9s-9-4-9-9 4-9 9-9c1 0 2 0 3 1V48c-1 0-2 0-3 0-10 0-18 8-18 18s8 18 18 18 18-8 18-18V41c4 3 8 4 12 5V37c-2 0-7-2-10-6l10-6z"/><path fill="white" d="M62 35c3 4 7 7 12 8v9c-4-1-8-2-12-5v26c0 10-8 18-18 18s-18-8-18-18 8-18 18-18c1 0 2 0 3 0v9c-1 0-2-1-3-1-5 0-9 4-9 9s4 9 9 9 9-4 9-9V17h9c3 4 7 7 12 8"/></svg>` },
   { key: 'linkedin',  label: 'LinkedIn',  svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="18" fill="#0A66C2"/><path fill="white" d="M25 38h15v47H25zm7-5a9 9 0 110-18 9 9 0 010 18zm55 52H72V62c0-4-1-9-7-9s-8 4-8 8v24H42V38h14v6c2-3 6-7 13-7 14 0 18 9 18 21z"/></svg>` },
   { key: 'scan-me',  label: 'Scan Me',   svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="10" fill="#111"/><rect x="5" y="5" width="36" height="36" rx="6" fill="#f5e642"/><rect x="10" y="10" width="26" height="26" rx="3" fill="#111"/><rect x="15" y="15" width="16" height="16" rx="2" fill="#f5e642"/><rect x="59" y="5" width="36" height="36" rx="6" fill="#f5e642"/><rect x="64" y="10" width="26" height="26" rx="3" fill="#111"/><rect x="69" y="15" width="16" height="16" rx="2" fill="#f5e642"/><rect x="5" y="59" width="36" height="36" rx="6" fill="#f5e642"/><rect x="10" y="64" width="26" height="26" rx="3" fill="#111"/><rect x="15" y="69" width="16" height="16" rx="2" fill="#f5e642"/><rect x="46" y="5" width="7" height="7" rx="1" fill="#f5e642"/><rect x="46" y="16" width="7" height="7" rx="1" fill="#f5e642"/><rect x="46" y="27" width="7" height="7" rx="1" fill="#f5e642"/><rect x="59" y="46" width="7" height="7" rx="1" fill="#f5e642"/><rect x="70" y="46" width="7" height="7" rx="1" fill="#f5e642"/><rect x="81" y="46" width="7" height="7" rx="1" fill="#f5e642"/><rect x="59" y="57" width="7" height="7" rx="1" fill="#f5e642"/><rect x="70" y="57" width="7" height="7" rx="1" fill="#f5e642"/><rect x="59" y="68" width="7" height="7" rx="1" fill="#f5e642"/><rect x="70" y="68" width="7" height="7" rx="1" fill="#f5e642"/><rect x="81" y="68" width="7" height="7" rx="1" fill="#f5e642"/><rect x="81" y="57" width="7" height="7" rx="1" fill="#f5e642"/><rect x="46" y="59" width="7" height="7" rx="1" fill="#f5e642"/><rect x="46" y="70" width="7" height="7" rx="1" fill="#f5e642"/><rect x="59" y="79" width="29" height="7" rx="1" fill="#f5e642"/><rect x="46" y="79" width="7" height="7" rx="1" fill="#f5e642"/></svg>` },
-  { key: 'camera',   label: 'Caméra',    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="#555"/><path fill="white" d="M80 35H67l-6-9H39l-6 9H20c-4 0-8 4-8 8v35c0 4 4 8 8 8h60c4 0 8-4 8-8V43c0-4-4-8-8-8zM50 76a18 18 0 110-36 18 18 0 010 36zm0-8a10 10 0 100-20 10 10 0 000 20z"/></svg>` },
+  { key: 'camera',   label: currentLang === 'en' ? 'Camera' : 'Caméra',    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="#555"/><path fill="white" d="M80 35H67l-6-9H39l-6 9H20c-4 0-8 4-8 8v35c0 4 4 8 8 8h60c4 0 8-4 8-8V43c0-4-4-8-8-8zM50 76a18 18 0 110-36 18 18 0 010 36zm0-8a10 10 0 100-20 10 10 0 000 20z"/></svg>` },
   { key: 'custom',   label: 'Mon logo',  svg: null },
 ];
 
@@ -241,7 +550,7 @@ async function initPresetLogos() {
       $('dropContent').style.display = 'none';
       $('logoPreviewWrap').style.display = 'flex';
       if (!state.savedEcLevel) { state.savedEcLevel = $('ecLevel').value; $('ecLevel').value = 'H'; }
-      showToast('✓ Logo sélectionné — correction H activée');
+      showToast(t('toast_logo_selected'));
       scheduleQR();
     });
 
@@ -255,7 +564,13 @@ initPresetLogos();
 const logoDropZone = $('logoDropZone');
 const logoFile     = $('logoFile');
 
-$('logoPickBtn').addEventListener('click', e => { e.stopPropagation(); logoFile.click(); });
+// Délégation sur logoDropZone pour gérer logoPickBtn même après re-render i18n
+$('logoDropZone').addEventListener('click', e => {
+  if (e.target.id === 'logoPickBtn' || e.target.closest('#logoPickBtn')) {
+    e.stopPropagation();
+    logoFile.click();
+  }
+});
 logoDropZone.addEventListener('click', () => { if (!state.logoDataURL) logoFile.click(); });
 logoDropZone.addEventListener('dragover', e => { e.preventDefault(); logoDropZone.classList.add('drag-over'); });
 logoDropZone.addEventListener('dragleave', () => logoDropZone.classList.remove('drag-over'));
@@ -276,7 +591,7 @@ function loadLogo(file) {
     $$('.preset-logo-btn').forEach(b => b.classList.remove('active'));
     state.savedEcLevel = $('ecLevel').value;
     $('ecLevel').value = 'H';
-    showToast('✓ Logo ajouté — correction H activée');
+    showToast(t('toast_logo_added'));
     scheduleQR();
   };
   reader.readAsDataURL(file);
@@ -444,14 +759,14 @@ function setExportEnabled(enabled) {
 $('dlPNG').addEventListener('click', () => {
   if (!state.currentPNG) return;
   downloadURL(state.currentPNG, `qrcg-${slugify(state.lastText)}.png`);
-  showToast('✓ PNG téléchargé');
+  showToast(t('toast_png'));
 });
 
 $('dlSVG').addEventListener('click', () => {
   if (!state.currentSVGRaw) return;
   const blob = new Blob([state.currentSVGRaw], { type: 'image/svg+xml' });
   downloadURL(URL.createObjectURL(blob), `qrcg-${slugify(state.lastText)}.svg`);
-  showToast('✓ SVG téléchargé');
+  showToast(t('toast_svg'));
 });
 
 $('dlPDF').addEventListener('click', async () => {
@@ -472,7 +787,7 @@ $('dlPDF').addEventListener('click', async () => {
     doc.setFontSize(8); doc.setTextColor(160);
     doc.text('qrcodegenerator.fr', pageW / 2, pageH - 12, { align: 'center' });
     doc.save(`qrcg-${slugify(state.lastText)}.pdf`);
-    showToast('✓ PDF téléchargé');
+    showToast(t('toast_pdf'));
   } catch(e) { showToast('⚠ Erreur PDF'); }
 });
 
@@ -485,18 +800,18 @@ $('saveHistory').addEventListener('click', () => {
   const label = $('qrLabel').value || state.lastText;
   const hist  = getHistory();
   hist.unshift({ id: Date.now(), label, content: state.lastText, png: state.currentPNG,
-    date: new Date().toLocaleDateString('fr-FR', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' }),
+    date: new Date().toLocaleDateString(currentLang === 'fr' ? 'fr-FR' : 'en-GB', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' }),
     fg: state.lastFg, bg: state.lastBg });
   if (hist.length > 50) hist.length = 50;
   localStorage.setItem(HISTORY_KEY, JSON.stringify(hist));
-  showToast('✓ Sauvegardé dans l\'historique');
+  showToast(t('toast_saved'));
 });
 
 function renderHistory() {
   const hist  = getHistory();
   const grid  = $('historyGrid');
   const empty = $('historyEmpty');
-  $('historyCount').textContent = `${hist.length} entrée${hist.length !== 1 ? 's' : ''}`;
+  $('historyCount').textContent = t('hist_entries')(hist.length);
   if (!hist.length) { grid.innerHTML = ''; grid.appendChild(empty); return; }
   grid.innerHTML = '';
   hist.forEach((entry, idx) => {
@@ -510,10 +825,10 @@ function renderHistory() {
         <div class="history-card-content">${entry.content.substring(0, 60)}</div>
         <div class="history-card-date">${entry.date}</div>
         <div class="history-card-actions">
-          <button class="hist-action-btn" data-action="download" data-id="${entry.id}">↓ PNG</button>
-          <button class="hist-action-btn" data-action="load" data-id="${entry.id}">↗ Charger</button>
-          <button class="hist-action-btn" data-action="pdf" data-id="${entry.id}">↓ PDF</button>
-          <button class="hist-action-btn delete" data-action="delete" data-id="${entry.id}">✕ Sup.</button>
+          <button class="hist-action-btn" data-action="download" data-id="${entry.id}">${t('hist_dl')}</button>
+          <button class="hist-action-btn" data-action="load" data-id="${entry.id}">${t('hist_load')}</button>
+          <button class="hist-action-btn" data-action="pdf" data-id="${entry.id}">${t('hist_pdf')}</button>
+          <button class="hist-action-btn delete" data-action="delete" data-id="${entry.id}">${t('hist_delete')}</button>
         </div>
       </div>`;
     grid.appendChild(card);
@@ -525,18 +840,30 @@ function renderHistory() {
     const id = parseInt(btn.dataset.id);
     const entry = getHistory().find(h => h.id === id);
     if (!entry) return;
-    if (btn.dataset.action === 'download') { downloadURL(entry.png, `qrcg-${slugify(entry.content)}.png`); showToast('✓ PNG téléchargé'); }
+    if (btn.dataset.action === 'download') { downloadURL(entry.png, `qrcg-${slugify(entry.content)}.png`); showToast(t('toast_png')); }
     else if (btn.dataset.action === 'load') {
       $$('.nav-tab')[0].click(); $$('.type-btn')[0].click();
       $('urlInput').value = entry.content; $('qrLabel').value = entry.label;
       $('fgColor').value = entry.fg || '#000000'; $('bgColor').value = entry.bg || '#ffffff';
       $('fgColorVal').textContent = entry.fg || '#000000'; $('bgColorVal').textContent = entry.bg || '#ffffff';
-      scheduleQR(); showToast('↗ QR code chargé');
+      scheduleQR(); showToast(t('toast_loaded'));
     }
     else if (btn.dataset.action === 'pdf') { exportHistoryPDF(entry); }
     else if (btn.dataset.action === 'delete') {
       localStorage.setItem(HISTORY_KEY, JSON.stringify(getHistory().filter(h => h.id !== id)));
-      renderHistory(); showToast('✓ Supprimé');
+      renderHistory();
+
+// ── Guide CTA button ───────────────────────────────────────────
+const guideCTABtn = document.getElementById('guideCTA');
+if (guideCTABtn) {
+  guideCTABtn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelector('.nav-tab[data-tab="generator"]').classList.add('active');
+    document.getElementById('tab-generator').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+} showToast(t('toast_deleted'));
     }
   });
 }
@@ -555,13 +882,25 @@ async function exportHistoryPDF(entry) {
     doc.setFontSize(8); doc.setTextColor(160);
     doc.text('qrcodegenerator.fr', pageW / 2, pageH - 12, { align: 'center' });
     doc.save(`qrcg-${slugify(entry.content)}.pdf`);
-    showToast('✓ PDF téléchargé');
+    showToast(t('toast_pdf'));
   } catch(e) { showToast('⚠ Erreur PDF'); }
 }
 
 $('clearHistory').addEventListener('click', () => {
-  if (!confirm('Effacer tout l\'historique ?')) return;
-  localStorage.removeItem(HISTORY_KEY); renderHistory(); showToast('✓ Historique effacé');
+  if (!confirm(t('confirm_clear'))) return;
+  localStorage.removeItem(HISTORY_KEY); renderHistory();
+
+// ── Guide CTA button ───────────────────────────────────────────
+const guideCTABtn = document.getElementById('guideCTA');
+if (guideCTABtn) {
+  guideCTABtn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelector('.nav-tab[data-tab="generator"]').classList.add('active');
+    document.getElementById('tab-generator').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+} showToast(t('toast_cleared'));
 });
 
 // ── Batch ──────────────────────────────────────────────────────
@@ -569,7 +908,7 @@ $('generateBatch').addEventListener('click', generateBatch);
 
 async function generateBatch() {
   const raw = $('batchInput').value.trim();
-  if (!raw) { showToast('⚠ Entrez au moins une ligne'); return; }
+  if (!raw) { showToast(t('toast_batch_empty')); return; }
   const lines = raw.split('\n').map(l => l.trim()).filter(Boolean).slice(0, 10);
   const fg = $('batchFg').value, bg = $('batchBg').value;
   const size = parseInt($('batchSize').value) || 200;
@@ -594,9 +933,9 @@ async function generateBatch() {
     if (!btn) return;
     const idx = parseInt(btn.dataset.idx);
     const item = state.batchItems[idx];
-    if (item) { downloadURL(item.png, `qrcg-batch-${idx+1}.png`); showToast(`✓ QR #${idx+1} téléchargé`); }
+    if (item) { downloadURL(item.png, `qrcg-batch-${idx+1}.png`); showToast(`✓ QR #${idx+1} ${t('toast_png').replace('✓ ','')}`); }
   });
-  showToast(`✓ ${lines.length} QR codes générés`);
+  showToast(`✓ ${lines.length} QR codes`);
 }
 
 function generateBatchQR(text, size, fg, bg) {
@@ -619,13 +958,13 @@ function generateBatchQR(text, size, fg, bg) {
 }
 
 $('downloadAllPNG').addEventListener('click', async () => {
-  if (!state.batchItems.length) { showToast('⚠ Générez d\'abord'); return; }
+  if (!state.batchItems.length) { showToast(t('toast_generate_first')); return; }
   for (let i = 0; i < state.batchItems.length; i++) { await sleep(100); downloadURL(state.batchItems[i].png, `qrcg-batch-${i+1}.png`); }
-  showToast(`✓ ${state.batchItems.length} PNG téléchargés`);
+  showToast(`✓ ${state.batchItems.length} ${t('toast_png').replace('✓ ','')}`);
 });
 
 $('downloadBatchPDF').addEventListener('click', async () => {
-  if (!state.batchItems.length) { showToast('⚠ Générez d\'abord'); return; }
+  if (!state.batchItems.length) { showToast(t('toast_generate_first')); return; }
   try {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
@@ -655,6 +994,18 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 // ── Init ───────────────────────────────────────────────────────
 renderHistory();
 
+// ── Guide CTA button ───────────────────────────────────────────
+const guideCTABtn = document.getElementById('guideCTA');
+if (guideCTABtn) {
+  guideCTABtn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelector('.nav-tab[data-tab="generator"]').classList.add('active');
+    document.getElementById('tab-generator').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
 // ── Contact form ────────────────────────────────────────────────
 const contactMsg = $('contactMessage');
 if (contactMsg) {
@@ -670,10 +1021,10 @@ if (contactForm) {
     e.preventDefault();
     const btn = $('contactSubmit');
     const message = $('contactMessage').value.trim();
-    if (!message) { $('contactMessage').focus(); showToast('⚠ Veuillez écrire un message'); return; }
+    if (!message) { $('contactMessage').focus(); showToast(t('toast_write_msg')); return; }
 
     btn.disabled = true;
-    btn.textContent = '⏳ Envoi en cours…';
+    btn.textContent = t('sending');
     $('contactSuccess').style.display = 'none';
     $('contactError').style.display   = 'none';
 
@@ -687,7 +1038,7 @@ if (contactForm) {
         $('contactSuccess').style.display = 'flex';
         contactForm.reset();
         $('charCount').textContent = '0 / 1000';
-        showToast('✓ Message envoyé !');
+        showToast(t('toast_sent'));
       } else {
         const data = await res.json().catch(() => ({}));
         throw new Error(data?.errors?.map(e => e.message).join(', ') || `Erreur ${res.status}`);
@@ -697,7 +1048,7 @@ if (contactForm) {
       $('contactError').style.display = 'flex';
     } finally {
       btn.disabled = false;
-      btn.textContent = '▶ ENVOYER LE MESSAGE';
+      btn.textContent = t('contact_send');
     }
   });
 }
