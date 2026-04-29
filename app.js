@@ -654,3 +654,50 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 // ── Init ───────────────────────────────────────────────────────
 renderHistory();
+
+// ── Contact form ────────────────────────────────────────────────
+const contactMsg = $('contactMessage');
+if (contactMsg) {
+  contactMsg.addEventListener('input', () => {
+    $('charCount').textContent = `${contactMsg.value.length} / 1000`;
+    if (contactMsg.value.length > 1000) contactMsg.value = contactMsg.value.slice(0, 1000);
+  });
+}
+
+const contactForm = $('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = $('contactSubmit');
+    const message = $('contactMessage').value.trim();
+    if (!message) { $('contactMessage').focus(); showToast('⚠ Veuillez écrire un message'); return; }
+
+    btn.disabled = true;
+    btn.textContent = '⏳ Envoi en cours…';
+    $('contactSuccess').style.display = 'none';
+    $('contactError').style.display   = 'none';
+
+    try {
+      const res = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' },
+      });
+      if (res.ok) {
+        $('contactSuccess').style.display = 'flex';
+        contactForm.reset();
+        $('charCount').textContent = '0 / 1000';
+        showToast('✓ Message envoyé !');
+      } else {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.errors?.map(e => e.message).join(', ') || `Erreur ${res.status}`);
+      }
+    } catch(err) {
+      $('contactErrorMsg').textContent = err.message || 'Erreur réseau. Réessayez.';
+      $('contactError').style.display = 'flex';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = '▶ ENVOYER LE MESSAGE';
+    }
+  });
+}

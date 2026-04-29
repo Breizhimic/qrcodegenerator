@@ -27,6 +27,7 @@
       <button class="nav-tab active" data-tab="generator">Générateur</button>
       <button class="nav-tab" data-tab="batch">Batch</button>
       <button class="nav-tab" data-tab="history">Historique</button>
+      <button class="nav-tab" data-tab="about">À propos</button>
     </nav>
     <button class="theme-toggle" id="themeToggle" title="Changer de thème">
       <span class="theme-icon">◐</span>
@@ -445,6 +446,168 @@
           <span class="empty-sub">Générez un QR code et cliquez sur "Sauvegarder"</span>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ====== ABOUT ====== -->
+  <section class="tab-content" id="tab-about">
+    <div class="about-container">
+
+      <!-- Hero -->
+      <div class="about-hero">
+        <div class="about-hero-icon" aria-hidden="true">▦</div>
+        <h1 class="about-hero-title">Le générateur de QR codes<br>simple, rapide et gratuit.</h1>
+        <p class="about-hero-sub">Aucune inscription. Aucun cookie. Aucune donnée collectée. Juste votre QR code.</p>
+      </div>
+
+      <!-- Pourquoi nous choisir -->
+      <div class="about-section">
+        <h2 class="about-section-title">Pourquoi utiliser qrcodegenerator.fr ?</h2>
+        <div class="about-features">
+
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">⚡</div>
+            <h3 class="feature-title">Gratuit et sans limite</h3>
+            <p class="feature-desc">Générez autant de QR codes que vous voulez, sans abonnement, sans compte, sans carte bancaire. 100% gratuit aujourd'hui et pour toujours.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">🚀</div>
+            <h3 class="feature-title">Instantané</h3>
+            <p class="feature-desc">L'aperçu se met à jour en temps réel à chaque frappe. Pas d'attente, pas de bouton "Générer" à cliquer. Votre QR code est prêt en moins d'une seconde.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">🎨</div>
+            <h3 class="feature-title">Personnalisation complète</h3>
+            <p class="feature-desc">Couleurs, taille, logo au centre (Facebook, Instagram, votre propre logo…), niveau de correction d'erreur — maîtrisez chaque détail de votre QR code.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">🔧</div>
+            <h3 class="feature-title">Flexible et polyvalent</h3>
+            <p class="feature-desc">URL, texte libre, WiFi, email, SMS, contact vCard, fichier… 8 types de contenu différents pour couvrir tous les usages professionnels et personnels.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">🔒</div>
+            <h3 class="feature-title">Aucune donnée collectée</h3>
+            <p class="feature-desc">Zéro cookie de tracking. Zéro collecte de données personnelles. Tout se passe dans votre navigateur — vos contenus ne quittent jamais votre appareil.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">📥</div>
+            <h3 class="feature-title">Export PNG, SVG &amp; PDF</h3>
+            <p class="feature-desc">Téléchargez vos QR codes dans le format adapté à votre usage : PNG pour le web, SVG vectoriel pour l'impression, PDF mis en page pour les documents professionnels.</p>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Qui sommes nous -->
+      <div class="about-section about-section-alt">
+        <div class="about-who">
+          <div class="about-who-text">
+            <h2 class="about-section-title">Qui sommes-nous ?</h2>
+            <p>QRCodeGenerator.fr a été créé par un jeune développeur passionné par les outils simples et véritablement utiles. Fatigué des générateurs de QR codes surchargés, truffés de publicités intrusives ou qui demandent une inscription juste pour télécharger une image, il a décidé d'en construire un différent.</p>
+            <p>Notre conviction&nbsp;: un bon outil doit être accessible à tous, sans friction. Pas d'interface compliquée, pas de compte à créer, pas de données aspirées en arrière-plan. Juste un outil qui fait ce qu'il promet — et qui le fait bien.</p>
+            <p>QRCodeGenerator.fr est l'un des rares générateurs qui traite tout localement dans votre navigateur. Votre URL, votre mot de passe WiFi ou votre fiche contact ne transitent par aucun serveur. Ils ne sont jamais stockés, jamais partagés, jamais monétisés.</p>
+          </div>
+          <div class="about-who-stats" aria-label="Chiffres clés">
+            <div class="stat-card">
+              <span class="stat-num">8</span>
+              <span class="stat-label">Types de contenu</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num">3</span>
+              <span class="stat-label">Formats d'export</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num">0</span>
+              <span class="stat-label">Cookie traceur</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num">∞</span>
+              <span class="stat-label">QR codes gratuits</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="about-section" id="contact">
+        <h2 class="about-section-title">Contact &amp; support</h2>
+        <p class="about-contact-intro">Un bug à signaler, une fonctionnalité à suggérer ou juste un retour positif ? Nous lisons tous les messages et répondons dans les meilleurs délais.</p>
+
+        <form class="contact-form" id="contactForm"
+              action="https://formspree.io/f/mdayqjpa"
+              method="POST">
+          <div class="contact-grid">
+            <div class="form-row">
+              <label class="sub-label" for="contactName">Votre prénom</label>
+              <input type="text" id="contactName" name="name" class="text-input" placeholder="Jean" autocomplete="given-name" />
+            </div>
+            <div class="form-row">
+              <label class="sub-label" for="contactEmail">Votre email</label>
+              <input type="email" id="contactEmail" name="email" class="text-input" placeholder="jean@exemple.com" autocomplete="email" />
+            </div>
+          </div>
+          <div class="form-row">
+            <label class="sub-label" for="contactSubject">Sujet</label>
+            <select id="contactSubject" name="subject" class="select-input">
+              <option value="">— Choisissez un sujet —</option>
+              <option value="bug">🐛 Signaler un bug</option>
+              <option value="feature">💡 Suggérer une fonctionnalité</option>
+              <option value="question">❓ Question générale</option>
+              <option value="other">💬 Autre</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label class="sub-label" for="contactMessage">Message <span class="required-star">*</span></label>
+            <textarea id="contactMessage" name="message" class="qr-input" rows="5"
+                      placeholder="Décrivez votre problème ou suggestion..."
+                      required aria-required="true"></textarea>
+            <span class="char-count" id="charCount" aria-live="polite">0 / 1000</span>
+          </div>
+          <!-- Honeypot anti-spam -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+          <div class="contact-actions">
+            <button type="submit" class="primary-btn" id="contactSubmit">
+              ▶ ENVOYER LE MESSAGE
+            </button>
+            <p class="contact-note">Nous ne partageons jamais votre adresse email.</p>
+          </div>
+          <div class="contact-success" id="contactSuccess" style="display:none;" role="alert">
+            <span class="success-icon">✓</span>
+            <div>
+              <strong>Message envoyé !</strong>
+              <p>Merci pour votre retour. Nous vous répondrons dans les 48h si vous avez laissé un email.</p>
+            </div>
+          </div>
+          <div class="contact-error" id="contactError" style="display:none;" role="alert">
+            <span>⚠</span>
+            <p id="contactErrorMsg">Une erreur est survenue. Réessayez.</p>
+          </div>
+        </form>
+
+        <div class="contact-alternatives">
+          <div class="alt-contact-card">
+            <span class="alt-icon" aria-hidden="true">📧</span>
+            <div>
+              <strong>Email direct</strong>
+              <p>contact@qrcodegenerator.fr</p>
+            </div>
+          </div>
+          <div class="alt-contact-card">
+            <span class="alt-icon" aria-hidden="true">⏱</span>
+            <div>
+              <strong>Délai de réponse</strong>
+              <p>Sous 48h en général</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
